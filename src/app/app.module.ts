@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { Noir } from '../styles';
-import { AuraBaseDesignTokens } from '@primeuix/themes/aura/base';
-import { Preset } from '@primeuix/themes/types';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Toast } from 'primeng/toast';
-import { ButtonModule } from 'primeng/button';
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { PagesModule } from './pages/pages.module';
+import { PrimengMaterialModule } from './core/material/primeng/primeng-material.module';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    Toast,
-    ButtonModule
+    PagesModule,
+    PrimengMaterialModule,
+    AppRoutingModule
   ],
    providers: [
     provideHttpClient(),
