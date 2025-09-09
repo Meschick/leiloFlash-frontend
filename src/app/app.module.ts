@@ -9,20 +9,19 @@ import { providePrimeNG } from 'primeng/config';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PagesModule } from './pages/pages.module';
 import { PrimengMaterialModule } from './core/material/primeng/primeng-material.module';
-import { HeaderComponent } from './shared/header/header.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     PagesModule,
-    PrimengMaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
   ],
-   providers: [
+  providers: [
     provideHttpClient(),
     providePrimeNG({
       ripple: true,
@@ -37,12 +36,13 @@ import { HeaderComponent } from './shared/header/header.component';
         }
       }
     }),
-     provideAnimations(),
+    provideAnimations(),
     MessageService,
     ConfirmationService
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
 
