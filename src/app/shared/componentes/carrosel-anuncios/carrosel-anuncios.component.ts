@@ -8,16 +8,21 @@ import { Component } from '@angular/core';
 })
 export class CarroselAnunciosComponent {
 
-  responsiveOptions: any[] = [
-    {
-      breakpoint: '1300px',
-      numVisible: 4
-    },
-    {
-      breakpoint: '575px',
-      numVisible: 1
-    }
-  ]
+ responsiveOptions = [
+  {
+    breakpoint: '1024px',
+    numVisible: 3
+  },
+  {
+    breakpoint: '768px',
+    numVisible: 2
+  },
+  {
+    breakpoint: '560px',
+    numVisible: 1
+  }
+];
+
 
   products: any | undefined;
 
@@ -25,8 +30,6 @@ export class CarroselAnunciosComponent {
   ngOnInit() {
     this.dadosMock();
   }
-
-
 
   dadosMock() {
     this.products = [
