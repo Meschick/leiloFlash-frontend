@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from "../shared/shared.module";
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { SharedModule } from "../shared/shared.module";
     HomeComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    CommonModule,
   ],
 })
 export class PagesModule { }

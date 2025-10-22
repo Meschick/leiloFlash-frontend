@@ -10,6 +10,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { PagesModule } from './pages/pages.module';
 import { PrimengMaterialModule } from './core/material/primeng/primeng-material.module';
 import { SharedModule } from './shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
     PagesModule,
     AppRoutingModule,
     SharedModule,
+    CommonModule
   ],
   providers: [
     provideHttpClient(),

@@ -1,0 +1,102 @@
+.leilao-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+  .leilao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .leilao-info {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      .data-leilao {
+        font-weight: 600;
+      }
+
+      .btn-ver-lotes {
+        border-radius: 12px;
+        font-size: 0.9rem;
+      }
+    }
+
+    .titulo-leilao {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .logo-leilao {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+    }
+
+    .contador {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #555;
+    }
+  }
+
+  .lote-card {
+    background: #f9f9f9;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 10px;
+    position: relative;
+
+    .badge-uf {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #007ad9;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .lote-info {
+      padding: 10px;
+
+      h3 {
+        margin: 5px 0;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .acoes {
+        display: flex;
+        gap: 5px;
+        margin-top: 5px;
+
+        .btn-mini {
+          font-size: 0.75rem;
+          padding: 0.25rem 0.5rem;
+        }
+      }
+    }
+  }
+}

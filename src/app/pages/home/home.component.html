@@ -1,14 +1,32 @@
 <div class="container-pai">
-  <div class="container-anuncios">
-    <app-carrosel-anuncios></app-carrosel-anuncios>
-  </div>
   <div class="container-main">
-     <div class="container-header-leiloes">
-        <p class="estilo-label-c">Leilo Flash | Seu lance, seu futuro. Leilão online e presencial</p>
-        <p class="estilo-label-sub-c">Lotes em destaque pra você ficar de olho</p>
+    <div class="container-header-leiloes">
+      <p class="estilo-label-c">
+        Leilo Flash | Seu lance, seu futuro. Leilão online e presencial
+      </p>
+      <p class="estilo-label-sub-c">
+        Leilões em destaque pra você ficar de olho
+      </p>
+    </div>
+
+    <div class="leiloes-list">
+      <div>
+        <app-list-leilao-destaque
+          *ngFor="let leilao of leiloes"
+          [nome]="leilao.nome"
+          [localizacao]="leilao.localizacao"
+          [dataHora]="leilao.dataHora"
+          [lotes]="leilao.lotes"
+        >
+        </app-list-leilao-destaque>
       </div>
-    <div class="container-list-leiloes">
-      
+
+      <!-- <app-leilao-card
+        *ngFor="let leilao of leiloes"
+        [titulo]="leilao.titulo"
+        [data]="leilao.data"
+        [lotes]="leilao.lotes"
+      ></app-leilao-card> -->
     </div>
   </div>
 </div>
