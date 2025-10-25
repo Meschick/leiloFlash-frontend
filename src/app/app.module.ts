@@ -8,9 +8,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PagesModule } from './pages/pages.module';
-import { PrimengMaterialModule } from './core/material/primeng/primeng-material.module';
+import { PrimengMaterialModule } from './core/primeng-material/primeng-material.module';
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { CommonModule } from '@angular/common';
     PagesModule,
     AppRoutingModule,
     SharedModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideHttpClient(),
