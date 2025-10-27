@@ -1,77 +1,95 @@
 <p-toast></p-toast>
-<div class="form">
-  <div class="form-left">
-    <div class="container-login-lef">
-      <div class="img"></div>
-      <div class="image-icos"></div>
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+  <p-toast></p-toast>
+  <div class="form">
+    <div class="form-left">
+      <div class="container-login-lef">
+        <div class="img"></div>
+        <div class="image-icos"></div>
+      </div>
     </div>
-  </div>
-  <div class="form-rigth">
-    <div class="card flex justify-center" style="margin-bottom: 19%">
-      <div pFocusTrap class="w-full sm:w-100 flex flex-col gap-6 content">
-        <div class="content" *ngIf="visualizarForm">
-          <div class="header-login">
-            <img src="assets/logo2.png" style="height: 160px" alt="logo" />
-          </div>
-          <div class="input-component">
-            <p-iconfield>
-              <p-inputicon>
-                <i class="pi pi-user" style="position: relative; top: -8px"></i>
-              </p-inputicon>
-              <input
-                type="text"
-                pInputText
-                id="input"
-                type="text"
-                placeholder="Usuário"
-                style="width: 100%; height: 30px; padding-left: 10%"
-              />
-            </p-iconfield>
-
-            <p-iconfield>
-              <p-inputicon>
-                <i class="pi pi-eye" style="position: relative; top: -8px"></i>
-              </p-inputicon>
-              <input
-                type="text"
-                pInputText
-                id="email"
-                type="password"
-                placeholder="Senha"
-                style="width: 100%; height: 30px; padding-left: 10%"
-              />
-            </p-iconfield>
-
-            <div class="flex items-center gap-2">
-              <p-checkbox
-                id="accept"
-                name="accept"
-                value="Accept"
-                class="custon-check"
-              />
-              <label for="accept"
-                >Eu declaro que li e concordo com os termos de uso.</label
-              >
+    <div class="form-rigth">
+      <div class="card flex justify-center" style="margin-bottom: 19%">
+        <div pFocusTrap class="w-full sm:w-100 flex flex-col gap-6 content">
+          <div class="content" *ngIf="visualizarForm">
+            <div class="header-login">
+              <img src="assets/logo2.png" style="height: 160px" alt="logo" />
             </div>
-          </div>
+            <div class="input-component">
+              <p-iconfield>
+                <p-inputicon>
+                  <i
+                    class="pi pi-user"
+                    style="position: relative; top: -8px"
+                  ></i>
+                </p-inputicon>
+                <input
+                  type="text"
+                  pInputText
+                  id="input"
+                  type="text"
+                  placeholder="Usuário"
+                  style="width: 100%; height: 30px; padding-left: 10%"
+                  formControlName="email"
+                />
+              </p-iconfield>
 
-          <div class="button-component">
-            <p-button
-              label="Realizar login"
-              class="mt-5 width"
-              styleClass="w-full"
-            />
-          </div>
+              <p-iconfield>
+                <p-inputicon>
+                  <i
+                    class="pi pi-eye"
+                    style="position: relative; top: -8px"
+                  ></i>
+                </p-inputicon>
+                <input
+                  type="password"
+                  pInputText
+                  id="senha"
+                  type="password"
+                  placeholder="Senha"
+                  style="width: 100%; height: 30px; padding-left: 10%"
+                  formControlName="senha"
+                />
+              </p-iconfield>
 
-          <p class="label-acesso" (click)="mostrarForm()">
-            Ainda não tem acesso?
-            <a routerLink="['/cadastro']" class="link-cadastro">Cadastre-se</a>
-          </p>
-        </div>
-        <div *ngIf="!visualizarForm">
-          <app-form-cadastro (voltar)="mudarVisualizacao()"></app-form-cadastro>
+              <div class="flex items-center gap-2">
+                <p-checkbox
+                  id="accept"
+                  name="accept"
+                  value="Accept"
+                  class="custon-check"
+                  [binary]="true"
+                  formControlName="termos"
+                />
+                <label for="accept"
+                  >Eu declaro que li e concordo com os termos de uso.</label
+                >
+              </div>
+            </div>
+
+            <div class="button-component">
+              <p-button
+                label="Realizar login"
+                class="mt-5 width"
+                styleClass="w-full"
+                type="submit"
+              />
+            </div>
+
+            <p class="label-acesso" (click)="mostrarForm()">
+              Ainda não tem acesso?
+              <a routerLink="['/cadastro']" class="link-cadastro"
+                >Cadastre-se</a
+              >
+            </p>
+          </div>
+          <div *ngIf="!visualizarForm">
+            <app-form-cadastro
+              (voltar)="mudarVisualizacao()"
+            ></app-form-cadastro>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</form>

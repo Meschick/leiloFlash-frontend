@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { confirmacaoSenhaValidator } from '../../../../utils/custom-validators';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-form-cadastro',
@@ -11,7 +13,10 @@ export class FormCadastroComponent implements OnInit {
 
   acessoForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit() {
     this.buildForm();
@@ -23,7 +28,9 @@ export class FormCadastroComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       senha: ['', Validators.required],
       confirmarSenha: ['', Validators.required]
-    })
+    }, {
+      Validators: confirmacaoSenhaValidator
+    });
   }
 
 
@@ -31,12 +38,30 @@ export class FormCadastroComponent implements OnInit {
     return this.acessoForm.controls;
   }
 
+  get emailControl(): FormControl {
+    return this.acessoForm.get('email') as FormControl
+  }
+
+  get senhaControl(): FormControl {
+    return this.acessoForm.get('senha') as FormControl
+  }
+
+  get confirmarSenhaControl(): FormControl {
+    return this.acessoForm.get('confirmarSenha') as FormControl
+  }
+
   onSubmit(): void {
     if (this.acessoForm.invalid) {
       this.acessoForm.markAllAsTouched();
       return;
     }
-    console.log('Formulário Enviado com sucesso:', this.acessoForm.value);
+
+    if (this.senhaControl.value != this.confirmarSenhaControl.value) {
+
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'A confirmação da senha não corresponde à nova senha.' });
+    }
   }
+
+
 
 }
