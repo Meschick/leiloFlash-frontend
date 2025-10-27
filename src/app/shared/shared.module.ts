@@ -4,6 +4,7 @@ import { HeaderComponent } from "./componentes/header/header.component";
 import { PrimengMaterialModule } from "../core/primeng-material/primeng-material.module";
 import { PagesModule } from "../pages/pages.module";
 import { ListLeilaoDestaqueComponent } from './componentes/list-leilao-destaque/list-leilao-destaque.component';
+import { AppRoutingModule } from "../app-routing.module";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { ListLeilaoDestaqueComponent } from './componentes/list-leilao-destaque/
   ],
   imports: [
     PrimengMaterialModule,
-
+    AppRoutingModule
   ],
   exports: [
     HeaderComponent,

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { PrimengMaterialModule } from '../core/primeng-material/primeng-material.module';
 import { FormCadastroComponent } from './login/components/form-cadastro/form-cadastro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Toast } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     PrimengMaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    Toast
 
   ],
 })

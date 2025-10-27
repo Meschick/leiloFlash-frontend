@@ -12,6 +12,7 @@ import { PrimengMaterialModule } from './core/primeng-material/primeng-material.
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Toast } from 'primeng/toast';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     CommonModule,
     ReactiveFormsModule,
+    Toast
   ],
   providers: [
     provideHttpClient(),
