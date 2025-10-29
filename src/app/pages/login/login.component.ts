@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { termosDeUsoValidator } from '../../utils/termo.validators';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../core/services/auth.service';
-import { LoginModel } from '../../models/loginModel.interface';
+import { LoginInterface } from '../../interfaces/login.interface';
 import { Router } from '@angular/router';
 
 @Component({
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    const user: LoginModel = {
+    const user: LoginInterface = {
       email: this.email.value,
       senha: this.senha.value
     };
