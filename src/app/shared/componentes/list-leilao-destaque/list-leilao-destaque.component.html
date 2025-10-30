@@ -1,10 +1,10 @@
 <div class="leilao-card">
-  <!-- Header do Leilão -->
+  <!-- Header -->
   <div class="leilao-header">
     <div class="leilao-info">
       <div class="data-leilao">
-        <strong>12/12/1212</strong>
-        <span>15H00</span>
+        <strong>{{ dataHora | date: 'dd/MM/yyyy' }}</strong>
+        <span>{{ dataHora | date: 'HH:mm' }}</span>
       </div>
       <button
         pButton
@@ -13,18 +13,16 @@
         class="btn-ver-lotes"
       ></button>
     </div>
+
     <div class="titulo-leilao">
-      <img
-        [src]="'https://via.placeholder.com/50x50'"
-        alt="Logo"
-        class="logo-leilao"
-      />
+      <img src="https://cdn-icons-png.flaticon.com/512/2910/2910768.png" alt="Logo" class="logo-leilao" />
       <h2>{{ nome }}</h2>
     </div>
-    <div class="contador">Faltam 14hm 15s</div>
+
+    <div class="contador">Faltam 14h 15s</div>
   </div>
 
-  <!-- Carousel de lotes -->
+  <!-- Carousel -->
   <p-carousel
     [value]="lotes"
     [numVisible]="4"
@@ -35,21 +33,17 @@
     <ng-template pTemplate="item" let-lote>
       <div class="lote-card">
         <img
-          [src]="lote.imagem || 'https://via.placeholder.com/250x150'"
+          [src]="lote.imagem"
           alt="Imagem do lote"
         />
         <div class="lote-info">
           <span class="badge-uf">{{ lote.uf }}</span>
           <h3>{{ lote.nome }}</h3>
           <p>{{ lote.modelo }}</p>
-          <strong>{{ lote.lanceAtual | currency : "BRL" }}</strong>
+          <strong>{{ lote.lanceAtual | currency : 'BRL' }}</strong>
           <div class="acoes">
             <button pButton label="360°" class="btn-mini"></button>
-            <button
-              pButton
-              label="{{ lote.fotos.length }} Fotos"
-              class="btn-mini"
-            ></button>
+            <button pButton label="{{ lote.fotos.length }} Fotos" class="btn-mini"></button>
             <button pButton label="Vídeo" class="btn-mini"></button>
           </div>
         </div>
@@ -57,3 +51,4 @@
     </ng-template>
   </p-carousel>
 </div>
+  

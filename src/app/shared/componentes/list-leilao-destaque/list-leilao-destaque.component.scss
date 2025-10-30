@@ -4,6 +4,8 @@
   padding: 20px;
   margin-bottom: 40px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  width: 1200px;
+  border: 1px solid black ;
 
   .leilao-header {
     display: flex;
@@ -100,3 +102,12 @@
     }
   }
 }
+
+::ng-deep p-button {
+  button {
+    justify-content: center;
+    width: 130px;
+    margin-left: 20px;
+    height: 40px;
+  }
+} 

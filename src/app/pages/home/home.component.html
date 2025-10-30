@@ -15,19 +15,11 @@
         <app-list-leilao-destaque
           *ngFor="let leilao of leiloes"
           [nome]="leilao.nome"
-          [localizacao]="leilao.localizacao"
           [dataHora]="leilao.dataHora"
           [lotes]="leilao.lotes"
         >
         </app-list-leilao-destaque>
       </div>
-
-      <!-- <app-leilao-card
-        *ngFor="let leilao of leiloes"
-        [titulo]="leilao.titulo"
-        [data]="leilao.data"
-        [lotes]="leilao.lotes"
-      ></app-leilao-card> -->
     </div>
   </div>
 </div>

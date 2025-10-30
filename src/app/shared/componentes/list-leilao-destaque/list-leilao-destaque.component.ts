@@ -18,7 +18,6 @@ interface Lote {
 })
 export class ListLeilaoDestaqueComponent {
   @Input() nome!: string;
-  @Input() localizacao!: string;
   @Input() dataHora!: string;
-  @Input() lotes: Lote[] = [];
+  @Input() lotes: any[] = [];
 }

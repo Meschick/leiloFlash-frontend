@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { termosDeUsoValidator } from '../../utils/termo.validators';
 import { MessageService } from 'primeng/api';
-import { AuthService } from '../../core/services/auth.service';
 import { LoginInterface } from '../../interfaces/login.interface';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
