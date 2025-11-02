@@ -1,0 +1,114 @@
+<app-header></app-header>
+<div class="main-content">
+  <div class="carrosel-imagens">
+    <div class="card">
+      <p-galleria
+        [value]="images"
+        [numVisible]="5"
+        [circular]="true"
+        [showItemNavigators]="true"
+        [showThumbnails]="false"
+        [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '640px' }"
+      >
+        <ng-template pTemplate="item" let-item>
+          <img [src]="item.itemImageSrc" style="width: 60%; display: block" />
+        </ng-template>
+      </p-galleria>
+    </div>
+  </div>
+  <div class="detalhe-lote-container">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <span>Início</span> › <span>Pátio São Carlos-SP</span> ›
+      <span>Carros</span> › <span>Fiat</span> ›
+      <span>2025</span>
+    </nav>
+
+    <div class="lote-main">
+      <!-- Informações do veículo -->
+      <div class="lote-info-section">
+        <h1 class="lote-title">FIAT/CRONOS DRIVE</h1>
+        <p class="lote-subtitle">
+          Leilão de Carros Fiat na Leilo. Carros Leilão Fiat
+        </p>
+
+        <div class="lote-details-grid">
+          <div class="detail-item">
+            <span class="label">Ano</span>
+            <span class="value">2024/2025</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Km</span>
+            <span class="value">14.798</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Combustível</span>
+            <span class="value">Flex</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Cor</span>
+            <span class="value">Preta</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Tipo</span>
+            <span class="value">Carros</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Tipo Retomada</span>
+            <span class="value">Recuperado de Financiamento</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Valor Mercado</span>
+            <span class="value">R$ 84.855,00</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Possui Chave</span>
+            <span class="value">Sim</span>
+          </div>
+          <div class="detail-item full-width">
+            <span class="label">Localização</span>
+            <span class="value">PATIO SAO CARLOS-SP (SÃO CARLOS/SP)</span>
+          </div>
+          <div class="detail-item full-width">
+            <span class="label">Prazo est. documentação</span>
+            <span class="value">45 dias úteis</span>
+          </div>
+        </div>
+
+        <div class="lote-description">
+          <h3>Descrição</h3>
+          <p>
+            Ipva 2025 por conta do comitente / vistoria R$ 250,00 / taxa de
+            preenchimento atpv-e R$ 50,00 / vendido no estado em que se
+            encontra, maiores informações em condições de venda/editais do
+            evento. Venda por foto – pátio São Carlos-SP – retirada na origem
+            por conta do arrematante.
+          </p>
+        </div>
+      </div>
+
+      <!-- Painel de Lances -->
+      <div class="lote-lance-panel">
+        <div class="status">Aberto para Lances</div>
+        <div class="lance-valor">
+          <span>Lance atual</span>
+          <strong>R$ 48.200,00</strong>
+          <small><a href="#">Histórico de 4 lance(s)</a></small>
+        </div>
+        <div class="lance-info">
+          <span class="user">S********C</span>
+          <span class="local">Frutal/MG</span>
+        </div>
+        <div class="lote-time">
+          <span>Lote finaliza em 23h30s</span>
+        </div>
+        <button class="btn-lance">Dar Lance</button>
+        <p class="login-note">
+          Entre ou cadastre-se para enviar lances<br />
+          <a href="#">cadastrar | entrar</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
