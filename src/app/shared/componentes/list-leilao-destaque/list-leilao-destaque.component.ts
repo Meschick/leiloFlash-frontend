@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 interface Lote {
   id: number;
@@ -16,8 +16,57 @@ interface Lote {
   templateUrl: './list-leilao-destaque.component.html',
   styleUrl: './list-leilao-destaque.component.scss'
 })
-export class ListLeilaoDestaqueComponent {
+export class ListLeilaoDestaqueComponent implements OnInit {
+  responsiveOptions!: any[];
+
   @Input() nome!: string;
   @Input() dataHora!: string;
   @Input() lotes: any[] = [];
+
+  ngOnInit(): void {
+    this.responsiveOptions = [
+      {
+        breakpoint: '1920px', // telas 1080p ou maiores
+        numVisible: 5,
+        numScroll: 1
+      },
+      {
+        breakpoint: '1600px', // notebooks grandes
+        numVisible: 4,
+        numScroll: 1
+      },
+      {
+        breakpoint: '1366px', // notebooks padrão
+        numVisible: 3,
+        numScroll: 1
+      },
+      {
+        breakpoint: '1024px', // tablets horizontais
+        numVisible: 3,
+        numScroll: 1
+      },
+      {
+        breakpoint: '900px', // tablets verticais
+        numVisible: 2,
+        numScroll: 1
+      },
+      {
+        breakpoint: '768px', // celulares grandes
+        numVisible: 2,
+        numScroll: 1
+      },
+      {
+        breakpoint: '600px', // celulares médios
+        numVisible: 1,
+        numScroll: 1
+      },
+      {
+        breakpoint: '480px', // celulares pequenos
+        numVisible: 1,
+        numScroll: 1
+      }
+    ];
+  }
+
+
 }

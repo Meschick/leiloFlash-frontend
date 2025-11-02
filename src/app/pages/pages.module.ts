@@ -7,16 +7,19 @@ import { PrimengMaterialModule } from '../core/primeng-material/primeng-material
 import { FormCadastroComponent } from './login/components/form-cadastro/form-cadastro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Toast } from 'primeng/toast';
+import { LoteDetalheComponent } from './lote-detalhe/lote-detalhe.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
-    FormCadastroComponent
+    FormCadastroComponent,
+    LoteDetalheComponent
   ],
   exports: [
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    LoteDetalheComponent
   ],
   imports: [
     SharedModule,
