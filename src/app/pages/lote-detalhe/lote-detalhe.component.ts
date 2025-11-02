@@ -9,6 +9,7 @@ export class LoteDetalheComponent implements OnInit {
 
   responsiveOptions!: any[]
   images!: any[];
+  displayBasic: boolean = false;
 
   ngOnInit(): void {
     this.responsiveOptions = [
@@ -26,7 +27,6 @@ export class LoteDetalheComponent implements OnInit {
       }
     ];
 
-    // MOCK DE IMAGENS: Usando URLs de placeholder (Picsum e Placeholder.com)
     this.images = [
       {
         // Foto aleatória, tamanho 640x480

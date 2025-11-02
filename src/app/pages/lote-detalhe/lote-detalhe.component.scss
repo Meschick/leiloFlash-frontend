@@ -9,6 +9,21 @@
   width: 100%;
 }
 
+.custom-header-details {
+  width: 56%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.contador {
+  background: #eaeaea; // neutro
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-weight: 600;
+  color: #444;
+  font-size: 0.95rem;
+}
 .detalhe-lote-container {
   width: 60%;
   margin: auto;

@@ -1,22 +1,41 @@
 <app-header></app-header>
 <div class="main-content">
-  <div class="carrosel-imagens">
-    <div class="card">
-      <p-galleria
-        [value]="images"
-        [numVisible]="5"
-        [circular]="true"
-        [showItemNavigators]="true"
-        [showThumbnails]="false"
-        [responsiveOptions]="responsiveOptions"
-        [containerStyle]="{ 'max-width': '640px' }"
-      >
-        <ng-template pTemplate="item" let-item>
-          <img [src]="item.itemImageSrc" style="width: 60%; display: block" />
-        </ng-template>
-      </p-galleria>
-    </div>
+  <div class="custom-header-details">
+    <p-button
+      icon="pi pi-external-link"
+      label="Vê fotos"
+      (click)="displayBasic = true"
+    ></p-button>
+
+    <div class="contador">⏳ Faltam 14h 15s</div>
   </div>
+
+  <p-galleria
+    [value]="images"
+    [(visible)]="displayBasic"
+    [numVisible]="5"
+    [circular]="true"
+    [fullScreen]="true"
+    [showItemNavigators]="true"
+    [showThumbnails]="true"
+    [containerStyle]="{ 'max-width': '50%' }"
+  >
+    <ng-template pTemplate="item" let-item>
+      <img
+        [src]="item.itemImageSrc"
+        [alt]="item.alt"
+        style="width: 100%; display: block"
+      />
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+      <img
+        [src]="item.thumbnailImageSrc"
+        [alt]="item.alt"
+        style="display: block"
+      />
+    </ng-template>
+  </p-galleria>
+
   <div class="detalhe-lote-container">
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
