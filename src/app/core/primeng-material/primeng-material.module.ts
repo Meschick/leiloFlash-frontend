@@ -13,6 +13,9 @@ import { InputIcon, InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FormsModule } from '@angular/forms';
+import { IftaLabelModule } from 'primeng/iftalabel';
 
 @NgModule({
   imports: [
@@ -31,7 +34,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     InputIconModule,
     InputTextModule,
     PasswordModule,
-    SelectButtonModule
+    SelectButtonModule,
+    InputNumberModule,
+    IftaLabelModule
 
   ],
   exports: [
@@ -50,8 +55,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     InputIconModule,
     InputTextModule,
     PasswordModule,
-    SelectButtonModule
-
+    SelectButtonModule,
+    InputNumberModule,
+    IftaLabelModule
 
 
   ]

@@ -109,24 +109,37 @@
 
       <!-- Painel de Lances -->
       <div class="lote-lance-panel">
-        <div class="status">Aberto para Lances</div>
+        <div class="status">🔥 Aberto para Lances</div>
+
         <div class="lance-valor">
           <span>Lance atual</span>
-          <strong>R$ 48.200,00</strong>
-          <small><a href="#">Histórico de 4 lance(s)</a></small>
+          <strong>R$ {{ lanceAtual | number : "1.2-2" }}</strong>
         </div>
-        <div class="lance-info">
-          <span class="user">S********C</span>
-          <span class="local">Frutal/MG</span>
+
+        <div class="lance-input">
+          <p-iftalabel>
+            <p-inputnumber
+              [(ngModel)]="valorLance"
+              inputId="price_input"
+              mode="currency"
+              currency="BRL"
+              locale="pt-BR"
+            />
+          </p-iftalabel>
+          <button class="btn-lance" (click)="enviarLance(loteId, valorLance)">
+            Dar Lance
+          </button>
         </div>
-        <div class="lote-time">
-          <span>Lote finaliza em 23h30s</span>
+
+        <div class="lances-historico">
+          <h4>📜 Últimos Lances</h4>
+          <ul>
+            <li *ngFor="let lance of lances">
+              💰 <strong>{{ lance.valor | currency : "BRL" }}</strong> -
+              <small>{{ lance.usuario }}</small>
+            </li>
+          </ul>
         </div>
-        <button class="btn-lance">Dar Lance</button>
-        <p class="login-note">
-          Entre ou cadastre-se para enviar lances<br />
-          <a href="#">cadastrar | entrar</a>
-        </p>
       </div>
     </div>
   </div>

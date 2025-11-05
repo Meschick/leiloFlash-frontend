@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignalrService } from '../../core/services/signalr/signalr.service';
 
 @Component({
   selector: 'app-lote-detalhe',
@@ -6,12 +7,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lote-detalhe.component.scss']
 })
 export class LoteDetalheComponent implements OnInit {
+  public valorLance: number = 0;
+  public lanceAtual: number = 48200;
+  public loteId: number = 1;
 
   responsiveOptions!: any[]
   images!: any[];
   displayBasic: boolean = false;
+  lances: any[] = [];
+
+  constructor(private signalRService: SignalrService) { }
 
   ngOnInit(): void {
+    this.signalRService.startConnection();
+
+    this.signalRService.lances$.subscribe((lance) => {
+      console.log("Lances => ", lance)
+      this.lances.push(lance);
+    });
+
+
+    this.responsiveCarrosel();
+    this.buildImagens();
+  }
+
+  enviarLance(loteId: number, valor: number) {
+    const request = { loteId, usuarioId: 1, valor };
+    this.signalRService.enviarLance(request, 'Usuário Teste');
+  }
+  responsiveCarrosel() {
     this.responsiveOptions = [
       {
         breakpoint: '991px',
@@ -26,7 +50,9 @@ export class LoteDetalheComponent implements OnInit {
         numVisible: 1
       }
     ];
+  }
 
+  buildImagens() {
     this.images = [
       {
         // Foto aleatória, tamanho 640x480
@@ -59,8 +85,6 @@ export class LoteDetalheComponent implements OnInit {
         alt: 'Imagem 5 - Detalhe do Motor'
       }
     ];
-
   }
-
 
 }
