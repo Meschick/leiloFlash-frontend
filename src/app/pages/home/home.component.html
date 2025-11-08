@@ -13,9 +13,10 @@
     <div class="leiloes-list">
       <div>
         <app-list-leilao-destaque
-          *ngFor="let leilao of leiloes"
-          [nome]="leilao.nome"
-          [dataHora]="leilao.dataHora"
+          *ngFor="let leilao of leiloes$ | async"
+          [nome]="leilao.leilao.nome"
+          [dataInicio]="leilao.leilao.dataInicio"
+          [dataFim]="leilao.leilao.dataFim"
           [lotes]="leilao.lotes"
         >
         </app-list-leilao-destaque>

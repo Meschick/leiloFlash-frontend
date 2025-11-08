@@ -1,0 +1,153 @@
+
+
+.sobre-container {
+    max-width: 1000px;
+    margin-top: 40px;
+    /* margin: auto; */
+    margin: 101px auto;
+    /* padding: 3rem 1rem; */
+    color: #333;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.highlight {
+  color: #ff6600;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #555;
+}
+
+.missao-visao-valores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background: #fffaf5;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  color: #ff6600;
+  margin-bottom: 0.8rem;
+}
+
+.card p,
+.card ul {
+  color: #555;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card ul li::before {
+  content: "• ";
+  color: #ff6600;
+}
+
+/* === COMO FUNCIONA === */
+.como-funciona {
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  color: #ff6600;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.step {
+  background: #fffaf5;
+  padding: 2rem 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.step .icon {
+  font-size: 2.5rem;
+  color: #ff6600;
+  margin-bottom: 1rem;
+}
+
+.step h3 {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* === CONTATO === */
+.contato {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  border-radius: 20px;
+  padding: 3rem 1rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.contato h2 {
+  font-size: 2rem;
+  color: #ff6600;
+  margin-bottom: 1rem;
+}
+
+.contato p {
+  color: #555;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.contato button {
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+}
+
+
+button {
+  margin-top: 1rem;
+}

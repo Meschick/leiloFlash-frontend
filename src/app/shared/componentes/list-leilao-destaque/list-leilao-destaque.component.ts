@@ -20,7 +20,8 @@ export class ListLeilaoDestaqueComponent implements OnInit {
   responsiveOptions!: any[];
 
   @Input() nome!: string;
-  @Input() dataHora!: string;
+  @Input() dataInicio!: string;
+  @Input() dataFim!: string;
   @Input() lotes: any[] = [];
 
   ngOnInit(): void {

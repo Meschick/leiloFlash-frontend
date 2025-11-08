@@ -8,18 +8,21 @@ import { FormCadastroComponent } from './login/components/form-cadastro/form-cad
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Toast } from 'primeng/toast';
 import { LoteDetalheComponent } from './lote-detalhe/lote-detalhe.component';
+import { SobreComponent } from './sobre/sobre.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
     FormCadastroComponent,
-    LoteDetalheComponent
+    LoteDetalheComponent,
+    SobreComponent
   ],
   exports: [
     HomeComponent,
     LoginComponent,
-    LoteDetalheComponent
+    LoteDetalheComponent,
+    SobreComponent
   ],
   imports: [
     SharedModule,
