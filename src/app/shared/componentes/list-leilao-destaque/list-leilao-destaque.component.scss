@@ -28,6 +28,8 @@
       align-items: center;
 
       .data-leilao {
+        display: flex;
+        flex-direction: column;
         font-weight: 600;
         color: #444;
 

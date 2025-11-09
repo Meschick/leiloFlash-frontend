@@ -19,7 +19,7 @@ const routes: Routes = [
     loadComponent: () => import('../app/pages/login/components/form-cadastro/form-cadastro.component').then(m => m.FormCadastroComponent)
   },
   {
-    path: 'detalhe',
+    path: 'detalhe/:id',
     component: LoteDetalheComponent
   },
   {

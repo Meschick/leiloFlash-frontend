@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SignalrService } from '../../core/services/signalr/signalr.service';
+import { ActivatedRoute } from '@angular/router';
+import { LoteService } from '../../core/services/lote/lote.service';
+import { LoteInterface } from '../../interfaces/lote.interface';
 
 @Component({
   selector: 'app-lote-detalhe',
@@ -15,8 +18,13 @@ export class LoteDetalheComponent implements OnInit {
   images!: any[];
   displayBasic: boolean = false;
   lances: any[] = [];
+  lote!: LoteInterface;
 
-  constructor(private signalRService: SignalrService) { }
+  constructor(
+    private signalRService: SignalrService,
+    private route: ActivatedRoute,
+    private readonly _loteService: LoteService
+  ) { }
 
   ngOnInit(): void {
     this.signalRService.startConnection();
@@ -26,15 +34,40 @@ export class LoteDetalheComponent implements OnInit {
       this.lances.push(lance);
     });
 
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (id) {
+      this.obterLotePorId(id);
+    }
 
     this.responsiveCarrosel();
     this.buildImagens();
+  }
+
+  obterLotePorId(id: number): void {
+    this._loteService.getById(id).subscribe({
+      next: (response) => {
+        this.lote = response.data;
+        console.log('Lote carregado:', this.lote);
+
+        // Popular galeria com imagens do veículo
+        // this.images = lote.veiculo.imagens.map((img) => ({
+        //   itemImageSrc: img.url,
+        //   thumbnailImageSrc: img.url,
+        //   alt: lote.veiculo.modelo
+        // }));
+      },
+      error: (err) => {
+        console.error('Erro ao buscar lote:', err);
+      }
+    });
   }
 
   enviarLance(loteId: number, valor: number) {
     const request = { loteId, usuarioId: 1, valor };
     this.signalRService.enviarLance(request, 'Usuário Teste');
   }
+
   responsiveCarrosel() {
     this.responsiveOptions = [
       {

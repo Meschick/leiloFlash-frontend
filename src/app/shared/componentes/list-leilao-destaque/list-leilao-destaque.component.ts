@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { LoteInterface } from '../../../interfaces/lote.interface';
 
 interface Lote {
   id: number;
@@ -16,13 +17,14 @@ interface Lote {
   templateUrl: './list-leilao-destaque.component.html',
   styleUrl: './list-leilao-destaque.component.scss'
 })
-export class ListLeilaoDestaqueComponent implements OnInit {
+export class ListLeilaoDestaqueComponent implements OnInit, OnChanges {
+
   responsiveOptions!: any[];
 
   @Input() nome!: string;
   @Input() dataInicio!: string;
   @Input() dataFim!: string;
-  @Input() lotes: any[] = [];
+  @Input() lotes: LoteInterface[] = [];
 
   ngOnInit(): void {
     this.responsiveOptions = [
@@ -69,5 +71,10 @@ export class ListLeilaoDestaqueComponent implements OnInit {
     ];
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['lotes'].currentValue) {
+      console.log("Lotes atualizados:", this.lotes);
+    }
+  }
 
 }

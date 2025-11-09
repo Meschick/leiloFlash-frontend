@@ -1,3 +1,5 @@
+import { LoteInterface } from "./lote.interface";
+
 export interface LeilaoInterface {
   id: number;
   nome: string;
@@ -5,4 +7,5 @@ export interface LeilaoInterface {
   dataInicio: string;
   dataFim: string;
   statusLeilao: string;
+  lotes: LoteInterface[]
 }

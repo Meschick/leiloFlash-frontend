@@ -7,10 +7,10 @@ import { LeilaoListInterface } from '../../../interfaces/leilaoList.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class LeilaoService extends BaseService<LeilaoListInterface> {
+export class LeilaoService extends BaseService<LeilaoInterface> {
 
 
-  constructor(httpClient: HttpClient){
+  constructor(httpClient: HttpClient) {
     super(httpClient, `${environment.api_url}/api/v1/Leilao`)
   }
 

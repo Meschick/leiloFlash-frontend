@@ -3,8 +3,8 @@
   <div class="leilao-header">
     <div class="leilao-info">
       <div class="data-leilao">
-        <strong>{{ dataHora | date : "dd/MM/yyyy" }}</strong>
-        <span>{{ dataHora | date : "HH:mm" }}</span>
+        <strong>Início: {{ dataInicio | date : "dd/MM/yyyy HH:mm:ss" }}</strong>
+        <span> Fim: {{ dataFim | date : "dd/MM/yyyy HH:mm:ss" }}</span>
       </div>
 
       <button
@@ -44,21 +44,21 @@
         </div>
 
         <div class="lote-info">
-          <h3>{{ lote.nome }}</h3>
-          <p>{{ lote.modelo }}</p>
-          <strong>{{ lote.lanceAtual | currency : "BRL" }}</strong>
+          <h3>{{ lote.veiculo.marca }}</h3>
+          <p>{{ lote.veiculo.modelo }}</p>
+          <strong>{{ lote.valorInicial | currency : "BRL" }}</strong>
 
           <div class="acoes">
             <button
               pButton
               icon="pi pi-images"
-              label="{{ lote.fotos.length }} Fotos"
+              label="{{ lote.veiculo.imagens }} Fotos"
               class="btn-mini p-button-sm p-button-rounded"
             ></button>
           </div>
           <button
             class="btn-dar-lance-hover p-button-rounded"
-            routerLink="detalhe"
+            routerLink="detalhe/{{ lote.id }}"
           >
             Dar lance
           </button>
