@@ -2,154 +2,195 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  font-weight: 400;
-  font-style: normal;
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #f4f6fb;
 }
 
+/* LADO ESQUERDO */
 .form-left {
-  width: 40%;
-  height: 75%;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-.container-login-lef {
+  width: 45%;
   background-image: url("/assets/login.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.img {
-  width: 380px;
-  height: 250px;
-  border-radius: 7px;
-}
-
-.img:hover {
-  cursor: pointer;
-}
-
-.image-icos {
-  width: 100%;
-  height: 10%;
+  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 15px;
+  justify-content: center;
 }
 
-.image-icos .image-1,
-.image-icos .image-2,
-.image-icos .image-3 {
-  height: 31px;
-  width: 31px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 1%;
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
 }
 
-.image-icos .image-1:hover,
-.image-icos .image-2:hover,
-.image-icos .image-3:hover {
-  transition: 0.3s;
-  background-color: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  border-radius: 3px;
+.overlay .logo-left img {
+  height: 120px;
+  margin-bottom: 1rem;
 }
 
-.form-rigth {
-  width: 40%;
-  height: 75%;
-  background-color: #fff;
+.welcome-text {
+  font-size: 1.1rem;
+  max-width: 70%;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* LADO DIREITO */
+.form-right {
+  width: 55%;
+  background: #fff;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 3rem 4rem;
 }
 
 .card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  height: auto;
-  padding: 0 40px;
-}
-
-.content {
-  width: 100%;
-  height: auto;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  align-items: center;
 }
 
 .header-login {
-  width: 100%;
-  height: 140px;
   text-align: center;
-  font-weight: bold;
-  color: #ff4500;
-  font-size: 30px;
+  margin-bottom: 1.5rem;
+}
+
+.header-login h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.header-login p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
 }
 
 .input-component {
-  margin: auto;
-  height: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
 }
 
-::ng-deep p-button {
-  button {
-    justify-content: center;
-    width: 130px;
-    margin-left: 20px;
-    height: 40px;
-  }
+input[pInputText] {
+  width: 100%;
+}
+
+.checkbox-area {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+::ng-deep p-button button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
 }
 
 .button-component {
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
 }
 
-.custon-check {
-  margin-right: 2px;
-}
-
-.custom-icon > i {
-  position: relative;
-  top: -8px;
-}
-
 .label-acesso {
-  font-size: 14px;
-  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
   color: #555;
-  margin-top: 2%;
+  text-align: center;
 }
 
 .link-cadastro {
+  color: #ff4500;
   text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
   cursor: pointer;
-  font-weight: bold;
+}
+
+.link-cadastro:hover {
+  text-decoration: underline;
+}
+
+::ng-deep button {
+  width: 110px;
+  height: 33px;
+  font-weight: 600;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff7a00, #ff4500);
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+::ng-deep .p-password {
+  input {
+    height: 30px;
+    padding-left: 10px;
+    width: 100% !important;
+  }
+}
+
+::ng-deep .p-password .p-icon {
+  position: relative;
+  top: -7px;
+  right: 90%;
+}
+
+::ng-deep .p-password {
+  width: 100%;
+  padding: 0px;
+}
+
+.custom-icon {
+  position: relative;
+  margin-left: 82%;
+  top: 28px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 992px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .form-left {
+    display: none;
+  }
+
+  .form-right {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .card {
+    max-width: 90%;
+  }
 }

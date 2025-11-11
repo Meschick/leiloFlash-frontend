@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoteDetalheComponent } from './pages/lote-detalhe/lote-detalhe.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
+import { FormCadastroComponent } from './pages/login/components/form-cadastro/form-cadastro.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'cadastro',
-    loadComponent: () => import('../app/pages/login/components/form-cadastro/form-cadastro.component').then(m => m.FormCadastroComponent)
+    component: FormCadastroComponent
   },
   {
     path: 'detalhe/:id',

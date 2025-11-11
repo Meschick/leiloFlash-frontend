@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Toast } from 'primeng/toast';
 import { LoteDetalheComponent } from './lote-detalhe/lote-detalhe.component';
 import { SobreComponent } from './sobre/sobre.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { SobreComponent } from './sobre/sobre.component';
     PrimengMaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    Toast
+    Toast,
+    RouterModule
+
 
   ],
 })

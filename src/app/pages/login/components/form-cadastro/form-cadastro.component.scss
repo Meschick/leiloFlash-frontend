@@ -1,49 +1,126 @@
-.link-cadastro {
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: bold;
+.form {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #f4f6fb;
+}
+
+/* LADO ESQUERDO */
+.form-left {
+  width: 45%;
+  background-image: url("/assets/login.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.overlay .logo-left img {
+  height: 120px;
+  margin-bottom: 1rem;
+}
+
+.welcome-text {
+  font-size: 1.1rem;
+  max-width: 70%;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* LADO DIREITO */
+.form-right {
+  width: 55%;
+  background: #fff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 4rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-login {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.header-login h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.header-login p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
 }
 
 .input-component-cadastro {
-  width: 80%;
-  height: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin: auto;
-  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
 }
 
-.p-password,
-.p-selectbutton {
+input[pInputText],
+p-password {
   width: 100%;
 }
 
-.user-type-selection {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: #333;
-}
-.header-login {
-  width: 100%;
-  height: 150px;
-  text-align: center;
-  font-weight: bold;
-  color: #ff4500;
-  font-size: 30px;
+.error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: -0.3rem;
 }
 
 .button-component {
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
-  margin-top: 5%;
 }
 
-.label-acesso {
-  font-size: 14px;
-  text-align: center;
-  color: #555;
-  margin-top: 4%;
+::ng-deep button {
+  width: 110px;
+  height: 33px;
+  font-weight: 600;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff7a00, #ff4500);
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 ::ng-deep .p-password {
@@ -63,4 +140,51 @@
 ::ng-deep .p-password {
   width: 100%;
   padding: 0px;
+}
+
+.label-acesso {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+}
+
+.link-cadastro {
+  color: #ff4500;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.link-cadastro:hover {
+  text-decoration: underline;
+}
+
+.custom-icon-envelope {
+  position: relative;
+  margin-left: 82%;
+  top: 28px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 992px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .form-left {
+    display: none;
+  }
+
+  .form-right {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .card {
+    max-width: 90%;
+  }
 }

@@ -32,6 +32,8 @@ export class LoteDetalheComponent implements OnInit {
     this.signalRService.lances$.subscribe((lance) => {
       console.log("Lances => ", lance)
       this.lances.push(lance);
+      console.log("Lances", this.lances);
+
     });
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -64,7 +66,10 @@ export class LoteDetalheComponent implements OnInit {
   }
 
   enviarLance(loteId: number, valor: number) {
-    const request = { loteId, usuarioId: 1, valor };
+    const request = { loteId, usuarioId: 3, valor };
+
+    console.log("Request", request);
+
     this.signalRService.enviarLance(request, 'Usuário Teste');
   }
 

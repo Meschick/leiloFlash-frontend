@@ -41,13 +41,15 @@
     <nav class="breadcrumb">
       <span>Carros</span> ›
       <span>{{ lote.veiculo.marca + "/" + lote.veiculo.modelo }}</span> ›
-      <span>2025</span>
+      <span>{{ lote.veiculo.ano }}</span>
     </nav>
 
     <div class="lote-main">
       <!-- Informações do veículo -->
       <div class="lote-info-section">
-        <h1 class="lote-title">FIAT/CRONOS DRIVE</h1>
+        <h1 class="lote-title">
+          {{ lote.veiculo.marca + "/" + lote.veiculo.modelo }}
+        </h1>
         <p class="lote-subtitle">
           Leilão de Carros Fiat na Leilo. Carros Leilão Fiat
         </p>
@@ -55,11 +57,13 @@
         <div class="lote-details-grid">
           <div class="detail-item">
             <span class="label">Ano</span>
-            <span class="value">2024/2025</span>
+            <span class="value">{{
+              lote.veiculo.ano + "/" + lote.veiculo.ano
+            }}</span>
           </div>
           <div class="detail-item">
             <span class="label">Km</span>
-            <span class="value">14.798</span>
+            <span class="value">{{ lote.veiculo.kmAtual }}</span>
           </div>
           <div class="detail-item">
             <span class="label">Combustível</span>
@@ -67,27 +71,29 @@
           </div>
           <div class="detail-item">
             <span class="label">Cor</span>
-            <span class="value">Preta</span>
+            <span class="value">{{ lote.veiculo.cor }}</span>
           </div>
           <div class="detail-item">
             <span class="label">Tipo</span>
-            <span class="value">Carros</span>
+            <span class="value">{{ lote.tipo }}</span>
           </div>
           <div class="detail-item">
             <span class="label">Tipo Retomada</span>
-            <span class="value">Recuperado de Financiamento</span>
+            <span class="value">{{ lote.tipoRetomado }}</span>
           </div>
           <div class="detail-item">
             <span class="label">Valor Mercado</span>
-            <span class="value">R$ 84.855,00</span>
+            <span class="value">R$ {{ lote.valorMercado }}</span>
           </div>
           <div class="detail-item">
             <span class="label">Possui Chave</span>
-            <span class="value">Sim</span>
+            <span class="value">{{ lote.veiculo.possuiChave }}</span>
           </div>
           <div class="detail-item full-width">
             <span class="label">Localização</span>
-            <span class="value">PATIO SAO CARLOS-SP (SÃO CARLOS/SP)</span>
+            <span class="value">
+              {{ lote.localizacao }}
+            </span>
           </div>
           <div class="detail-item full-width">
             <span class="label">Prazo est. documentação</span>
@@ -98,11 +104,7 @@
         <div class="lote-description">
           <h3>Descrição</h3>
           <p>
-            Ipva 2025 por conta do comitente / vistoria R$ 250,00 / taxa de
-            preenchimento atpv-e R$ 50,00 / vendido no estado em que se
-            encontra, maiores informações em condições de venda/editais do
-            evento. Venda por foto – pátio São Carlos-SP – retirada na origem
-            por conta do arrematante.
+            {{ lote.descricao }}
           </p>
         </div>
       </div>
@@ -113,11 +115,11 @@
 
         <div class="lance-valor">
           <span>Lance atual</span>
-          <strong>R$ {{ lanceAtual | number : "1.2-2" }}</strong>
+          <strong>R$ {{ lote.valorInicial | number : "1.2-2" }}</strong>
         </div>
 
         <div class="lance-input">
-          <p-iftalabel>
+          <p-iftalabel style="height: 30px">
             <p-inputnumber
               [(ngModel)]="valorLance"
               inputId="price_input"
@@ -126,17 +128,29 @@
               locale="pt-BR"
             />
           </p-iftalabel>
-          <button class="btn-lance" (click)="enviarLance(loteId, valorLance)">
+          <button class="btn-lance" (click)="enviarLance(lote.id, valorLance)">
             Dar Lance
           </button>
         </div>
 
-        <div class="lances-historico">
-          <h4>📜 Últimos Lances</h4>
-          <ul>
-            <li *ngFor="let lance of lances">
-              💰 <strong>{{ lance.valor | currency : "BRL" }}</strong> -
-              <small>{{ lance.usuario }}</small>
+        <div class="lances-historico card">
+          <div class="header">
+            <h4 class="title">📜 Últimos Lances</h4>
+          </div>
+
+          <ul class="lances-list">
+            <li *ngFor="let lance of lances" class="lance-item">
+              <div class="lance-info">
+                <span class="lance-valor">{{
+                  lance.valor | currency : "BRL"
+                }}</span>
+                <span class="lance-usuario">{{ lance.usuario }}</span>
+              </div>
+              <span class="lance-data">{{ lance.data | date : "short" }}</span>
+            </li>
+
+            <li *ngIf="lances.length === 0" class="sem-lances">
+              Nenhum lance registrado ainda.
             </li>
           </ul>
         </div>

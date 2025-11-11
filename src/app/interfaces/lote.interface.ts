@@ -5,6 +5,11 @@ export interface LoteInterface {
   numeroLote: number;
   valorInicial: number;
   valorFinal: number;
+  tipo: string;
+  tipoRetomado: string;
+  valorMercado: number;
+  localizacao: string;
+  descricao: string;
   leilaoId: number;
   usuarioId: number;
   veiculo: VeiculoInterface

@@ -7,6 +7,7 @@ export interface VeiculoInterface {
   ano: number;
   cor: string;
   kmAtual: number;
+  possuiChave: boolean;
   valorInicial: number;
   imagens: ImagemInterface[];
 }

@@ -162,6 +162,9 @@
         text-transform: uppercase;
         cursor: pointer;
         transition: all 0.3s ease;
+        width: 100px;
+        height: 30px;
+        line-height: 7px;
 
         &:hover {
           transform: scale(1.05);
@@ -273,4 +276,69 @@
       }
     }
   }
+}
+
+.lances-historico {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.lances-historico:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.lances-historico .title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.lances-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.lance-item:hover {
+  background: #f9f9f9;
+}
+
+.lance-valor {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.lance-usuario {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.lance-data {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.sem-lances {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+::ng-deep .p-inputtext .p-component {
+  height: 30px;
 }

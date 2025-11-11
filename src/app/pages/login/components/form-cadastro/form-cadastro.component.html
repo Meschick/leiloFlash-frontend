@@ -1,108 +1,120 @@
 <p-toast></p-toast>
-<form [formGroup]="acessoForm" (ngSubmit)="onSubmit()">
-  <p-toast></p-toast>
-  <div
-    class="w-full sm:w-100 flex flex-col gap-6 content"
-    style="margin-bottom: 5%"
-  >
-    <div class="header-login">
-      <img src="assets/logo2.png" style="height: 160px" alt="logo" />
+
+<div class="form">
+  <!-- LADO ESQUERDO -->
+  <div class="form-left">
+    <div class="overlay">
+      <div class="logo-left"></div>
     </div>
-
-    <div class="input-component-cadastro">
-      <p-iconfield iconPosition="left">
-        <p-inputicon
-          class="pi pi-user"
-          style="position: relative; top: 27px"
-        ></p-inputicon>
-        <input
-          type="email"
-          pInputText
-          placeholder="E-mail"
-          formControlName="email"
-          style="width: 100%; height: 30px; padding-left: 35px"
-        />
-      </p-iconfield>
-      <div
-        *ngIf="
-          acessoFormControls['email'].invalid &&
-          (acessoFormControls['email'].dirty ||
-            acessoFormControls['email'].touched)
-        "
-        style="color: red; margin-top: -10px; font-size: 12px"
-      >
-        <span *ngIf="acessoFormControls['email'].errors?.['required']"
-          >O e-mail é obrigatório.</span
-        >
-        <span *ngIf="acessoFormControls['email'].errors?.['email']"
-          >O formato do e-mail é inválido.</span
-        >
-        <span *ngIf="acessoFormControls['email'].errors?.['maxlength']"
-          >O e-mail não pode ter mais de 100 caracteres.</span
-        >
-      </div>
-
-      <div class="card flex justify-center">
-        <p-password
-          [toggleMask]="true"
-          formControlName="senha"
-          placeholder="Senha (mínimo 8 caracteres)"
-        />
-      </div>
-      <div
-        *ngIf="
-          acessoFormControls['senha'].invalid &&
-          (acessoFormControls['senha'].dirty ||
-            acessoFormControls['senha'].touched)
-        "
-        style="color: red; margin-top: -10px; font-size: 12px"
-      >
-        <span *ngIf="acessoFormControls['senha'].errors?.['required']"
-          >A senha é obrigatória.</span
-        >
-        <span *ngIf="acessoFormControls['senha'].errors?.['minlength']"
-          >A senha deve ter no mínimo 8 caracteres.</span
-        >
-      </div>
-
-      <p-password
-        [toggleMask]="true"
-        formControlName="confirmarSenha"
-        placeholder="Confirme a Senha"
-      />
-      <div
-        *ngIf="
-          acessoFormControls['confirmarSenha'].invalid &&
-          (acessoFormControls['confirmarSenha'].dirty ||
-            acessoFormControls['confirmarSenha'].touched)
-        "
-        style="color: red; margin-top: -10px; font-size: 12px"
-      >
-        <span *ngIf="acessoFormControls['confirmarSenha'].errors?.['required']"
-          >A confirmação de senha é obrigatória.</span
-        >
-      </div>
-
-      <div
-        *ngIf="acessoForm.errors?.['senhasNaoCoincidem'] && (acessoFormControls['confirmarSenha'].dirty || acessoFormControls['confirmarSenha'].touched)"
-        style="color: red; margin-top: -10px; font-size: 12px"
-      >
-        <span>As senhas digitadas não coincidem.</span>
-      </div>
-    </div>
-
-    <div class="button-component">
-      <p-button
-        label="Criar Conta"
-        styleClass="w-full"
-        type="submit"
-        [disabled]="acessoForm.invalid"
-      />
-    </div>
-
-    <p class="label-acesso">
-      Já tem cadastro?
-      <a class="link-cadastro" (click)="voltar.emit()">Voltar para o Login</a>
-    </p>
   </div>
-</form>
+
+  <!-- LADO DIREITO -->
+  <div class="form-right">
+    <div class="card">
+      <form [formGroup]="acessoForm" (ngSubmit)="onSubmit()">
+        <div class="header-login">
+          <h2>Crie sua Conta</h2>
+          <p>Preencha os campos abaixo para se cadastrar</p>
+        </div>
+
+        <div class="input-component-cadastro">
+          <p-iconfield iconPosition="left">
+            <p-inputicon class="pi pi-user custom-icon-envelope"></p-inputicon>
+            <input
+              type="email"
+              pInputText
+              placeholder="E-mail"
+              formControlName="email"
+              style="height: 30px; padding-left: 3%"
+            />
+          </p-iconfield>
+          <div
+            *ngIf="
+              acessoFormControls['email'].invalid &&
+              (acessoFormControls['email'].dirty ||
+                acessoFormControls['email'].touched)
+            "
+            class="error-message"
+          >
+            <span *ngIf="acessoFormControls['email'].errors?.['required']">
+              O e-mail é obrigatório.
+            </span>
+            <span *ngIf="acessoFormControls['email'].errors?.['email']">
+              O formato do e-mail é inválido.
+            </span>
+            <span *ngIf="acessoFormControls['email'].errors?.['maxlength']">
+              O e-mail não pode ter mais de 100 caracteres.
+            </span>
+          </div>
+
+          <p-password
+            [toggleMask]="true"
+            formControlName="senha"
+            placeholder="Senha (mínimo 8 caracteres)"
+          ></p-password>
+          <div
+            *ngIf="
+              acessoFormControls['senha'].invalid &&
+              (acessoFormControls['senha'].dirty ||
+                acessoFormControls['senha'].touched)
+            "
+            class="error-message"
+          >
+            <span *ngIf="acessoFormControls['senha'].errors?.['required']">
+              A senha é obrigatória.
+            </span>
+            <span *ngIf="acessoFormControls['senha'].errors?.['minlength']">
+              A senha deve ter no mínimo 8 caracteres.
+            </span>
+          </div>
+
+          <p-password
+            [toggleMask]="true"
+            formControlName="confirmarSenha"
+            placeholder="Confirme a Senha"
+          ></p-password>
+          <div
+            *ngIf="
+              acessoFormControls['confirmarSenha'].invalid &&
+              (acessoFormControls['confirmarSenha'].dirty ||
+                acessoFormControls['confirmarSenha'].touched)
+            "
+            class="error-message"
+          >
+            <span
+              *ngIf="acessoFormControls['confirmarSenha'].errors?.['required']"
+              >A confirmação de senha é obrigatória.</span
+            >
+          </div>
+
+          <div
+            *ngIf="
+              acessoForm.errors?.['senhasNaoCoincidem'] &&
+              (acessoFormControls['confirmarSenha'].dirty ||
+                acessoFormControls['confirmarSenha'].touched)
+            "
+            class="error-message"
+          >
+            <span>As senhas digitadas não coincidem.</span>
+          </div>
+        </div>
+
+        <div class="button-component">
+          <p-button
+            label="Criar Conta"
+            styleClass="w-full"
+            type="submit"
+            [disabled]="acessoForm.invalid"
+          ></p-button>
+        </div>
+
+        <p class="label-acesso">
+          Já tem cadastro?
+          <a [routerLink]="['/login']" class="link-cadastro"
+            >Voltar para login</a
+          >
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
