@@ -16,6 +16,14 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
+import { MenuModule } from 'primeng/menu';
+import { RippleModule } from 'primeng/ripple';
+import { OverlayModule } from 'primeng/overlay';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   imports: [
@@ -36,7 +44,15 @@ import { IftaLabelModule } from 'primeng/iftalabel';
     PasswordModule,
     SelectButtonModule,
     InputNumberModule,
-    IftaLabelModule
+    IftaLabelModule,
+    MenuModule,
+    RippleModule,
+    OverlayModule,
+    OverlayPanelModule,
+    PanelMenuModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    FormsModule
 
   ],
   exports: [
@@ -57,7 +73,16 @@ import { IftaLabelModule } from 'primeng/iftalabel';
     PasswordModule,
     SelectButtonModule,
     InputNumberModule,
-    IftaLabelModule
+    IftaLabelModule,
+    MenuModule,
+    RippleModule,
+    OverlayModule,
+    OverlayPanelModule,
+    PanelMenuModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    FormsModule
+
 
 
   ]

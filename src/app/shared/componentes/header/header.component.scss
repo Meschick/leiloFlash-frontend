@@ -219,3 +219,52 @@ input:checked + .menu-item {
   box-shadow: 0 2px 6px rgba(255, 85, 0, 0.25);
   background: linear-gradient(135deg, #ff6600, #ff3300);
 }
+.user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff7b00, #ff4500);
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.overlay-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff7b00, #ff4500);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.overlay-user-info .name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.overlay-user-info .status {
+  font-size: 12px;
+  color: green;
+  font-weight: 500;
+}
+
+::ng-deep .p-panelmenu-item-link {
+  height: 40px !important;
+}

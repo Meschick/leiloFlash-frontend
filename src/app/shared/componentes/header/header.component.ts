@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { OverlayPanel } from 'primeng/overlaypanel';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,27 +11,53 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
 
-  items: MenuItem[] | undefined;
+  @ViewChild('userOverlay') userOverlay!: OverlayPanel;
 
+  isLoggedIn = false;
+  userEmail = '';
+  userInitial = '';
+  userItems: MenuItem[] = [];
 
-    ngOnInit(): void {
-     this.items = [
-      {
-        label: 'Home',
-        icon: 'pi pi-home'
-      },
-      {
-        label: 'Home',
-        icon: 'pi pi-home'
-      },
-      {
-        label: 'Home',
-        icon: 'pi pi-home'
-      },
-      {
-        label: 'Home',
-        icon: 'pi pi-home'
-      },
-     ]
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    // Verifica se o token existe e não está expirado
+    this.isLoggedIn = this.authService.isLoggeIn() && !this.authService.isTokenExpired();
+
+    if (this.isLoggedIn) {
+      const decoded = this.authService.getDecodedToken();
+
+      const emailClaimKey = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress';
+      const roleClaimKey = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
+
+      this.userEmail = decoded?.[emailClaimKey] || 'Usuário';
+      this.userInitial = this.userEmail.charAt(0).toUpperCase();
+
+      this.userItems = [
+        {
+          label: 'Minha Conta',
+          icon: 'pi pi-user',
+          items: [
+            {
+              label: 'Arrematados',
+              icon: 'pi pi-hammer',
+              command: () => this.router.navigate(['/arrematados'])
+            },
+            {
+              label: 'Sair',
+              icon: 'pi pi-sign-out',
+              command: () => this.logout()
+            }
+          ]
+        }
+      ];
     }
+  }
+
+  logout() {
+    this.authService.userLogout();
+    this.isLoggedIn = false; // atualiza o estado local
+    this.router.navigate(['/login']);
+    if (this.userOverlay) this.userOverlay.hide();
+  }
 }

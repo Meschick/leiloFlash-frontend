@@ -64,9 +64,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Clicou");
-    console.log("Formulário valido =>", this.formLogin.invalid);
-
     if (this.formLogin.invalid) {
       this.formLogin.markAllAsTouched();
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Dados inválidos' });
@@ -77,6 +74,7 @@ export class LoginComponent implements OnInit {
       email: this.email.value,
       senha: this.senha.value
     };
+
     this._loginService.userLogin(user).subscribe({
       next: ((objResponse) => {
         if (objResponse.sucesso) {

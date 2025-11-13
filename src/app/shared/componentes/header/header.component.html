@@ -1,8 +1,9 @@
 <div class="header">
   <div class="logo">
-    <img src="assets/logo2.png" style="height: 122px" alt="logo" />
+    <img src="assets/logo2.png" alt="logo" style="height: 122px" />
   </div>
 
+  <!-- MENU PRINCIPAL -->
   <div class="menu">
     <input type="radio" id="opt1" name="switch" checked routerLink="" />
     <label for="opt1" class="menu-item">
@@ -31,21 +32,44 @@
     <span class="slider"></span>
   </div>
 
-  <!-- UTILITÁRIOS -->
+  <!-- BOTÃO LOGIN / MENU USUÁRIO -->
   <div class="utils">
-    <div class="notify">
-      <i class="pi pi-bell"></i>
-      <span class="badge">3</span>
-    </div>
+    <!-- 🔹 Mostra botão se não estiver logado -->
+    <ng-container *ngIf="!isLoggedIn; else userMenu">
+      <button
+        pButton
+        label="Entrar / Cadastrar"
+        icon="pi pi-user"
+        class="btn-auth"
+        routerLink="/login"
+      ></button>
+    </ng-container>
 
-    <button class="btn-auth" routerLink="login">
-      <i class="pi pi-user"></i>
-      Cadastrar | Entrar
-    </button>
-  </div>
+    <!-- 🔹 Mostra menu se estiver logado -->
+    <ng-template #userMenu>
+      <div class="user-avatar" (click)="userOverlay.toggle($event)">
+        {{ userInitial }}
+      </div>
 
-  <!-- MENU MOBILE -->
-  <div class="menu-toggle">
-    <i class="pi pi-bars"></i>
+      <p-overlayPanel
+        #userOverlay
+        [dismissable]="true"
+        [showCloseIcon]="false"
+        [style]="{ width: '220px' }"
+      >
+        <div class="overlay-header">
+          <div class="overlay-avatar">{{ userInitial }}</div>
+          <div class="overlay-user-info">
+            <div class="name">{{ userEmail }}</div>
+            <span class="status">ATIVO</span>
+          </div>
+        </div>
+
+        <p-panelMenu
+          [model]="userItems"
+          [style]="{ width: '100%', height: 'auto', padding: '2%' }"
+        ></p-panelMenu>
+      </p-overlayPanel>
+    </ng-template>
   </div>
 </div>

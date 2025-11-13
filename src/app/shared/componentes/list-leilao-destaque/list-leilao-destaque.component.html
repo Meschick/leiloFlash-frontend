@@ -39,7 +39,7 @@
     <ng-template pTemplate="item" let-lote>
       <div class="lote-card">
         <div class="lote-img">
-          <img [src]="lote.imagem" alt="Imagem do lote" />
+          <img [src]="lote.veiculo.imagens[0]?.url" alt="Imagem do lote" />
           <span class="badge-uf">{{ lote.uf }}</span>
         </div>
 
