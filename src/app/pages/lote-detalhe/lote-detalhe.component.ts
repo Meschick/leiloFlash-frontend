@@ -3,6 +3,7 @@ import { SignalrService } from '../../core/services/signalr/signalr.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoteService } from '../../core/services/lote/lote.service';
 import { LoteInterface } from '../../interfaces/lote.interface';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-lote-detalhe',
@@ -14,25 +15,40 @@ export class LoteDetalheComponent implements OnInit {
   public lanceAtual: number = 48200;
   public loteId: number = 1;
 
+  isLogged = false;
   responsiveOptions!: any[]
   images!: any[];
   displayBasic: boolean = false;
   lances: any[] = [];
   lote!: LoteInterface;
+  userId!: any;
 
   constructor(
     private signalRService: SignalrService,
     private route: ActivatedRoute,
-    private readonly _loteService: LoteService
+    private readonly _loteService: LoteService,
+    private readonly _authService: AuthService
   ) { }
 
   ngOnInit(): void {
+
+    const decoded = this._authService.getDecodedToken();
+
+    const idClaimKey = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
+
+    this.userId = decoded[idClaimKey];
+
+    this.isLogged = this._authService.isLoggeIn();
+
     this.signalRService.startConnection();
 
     this.signalRService.lances$.subscribe((lance) => {
-      console.log("Lances => ", lance)
       this.lances.push(lance);
-      console.log("Lances", this.lances);
+
+
+      if (this.lote && this.lote.id === lance.loteId) {
+        this.lote.valorAtual = lance.valor;
+      }
 
     });
 
@@ -51,14 +67,6 @@ export class LoteDetalheComponent implements OnInit {
       next: (response) => {
         this.lote = response.data;
         this.images = response.data.veiculo.imagens;
-        console.log('Lote carregado:', this.lote);
-
-        // Popular galeria com imagens do veículo
-        // this.images = lote.veiculo.imagens.map((img) => ({
-        //   itemImageSrc: img.url,
-        //   thumbnailImageSrc: img.url,
-        //   alt: lote.veiculo.modelo
-        // }));
       },
       error: (err) => {
         console.error('Erro ao buscar lote:', err);
@@ -66,10 +74,17 @@ export class LoteDetalheComponent implements OnInit {
     });
   }
 
-  enviarLance(loteId: number, valor: number) {
-    const request = { loteId, usuarioId: 3, valor };
 
-    console.log("Request", request);
+  enviarLance(loteId: number, valor: number) {
+
+    const request = {
+      loteId: loteId,
+      usuarioId: Number(this.userId),
+      valor: valor
+    };
+
+    console.log("Request enviado", request);
+
 
     this.signalRService.enviarLance(request, 'Usuário Teste');
   }
@@ -90,40 +105,4 @@ export class LoteDetalheComponent implements OnInit {
       }
     ];
   }
-
-  // buildImagens() {
-  //   this.images = [
-  //     {
-  //       // Foto aleatória, tamanho 640x480
-  //       itemImageSrc: 'https://picsum.photos/id/1018/640/480',
-  //       thumbnailImageSrc: 'https://picsum.photos/id/1018/100/75',
-  //       alt: 'Imagem 1 - Frente do Fiat Cronos'
-  //     },
-  //     {
-  //       // Foto aleatória diferente
-  //       itemImageSrc: 'https://picsum.photos/id/1015/640/480',
-  //       thumbnailImageSrc: 'https://picsum.photos/id/1015/100/75',
-  //       alt: 'Imagem 2 - Interior do Fiat Cronos'
-  //     },
-  //     {
-  //       // Caixa colorida de teste (tamanho 640x480)
-  //       itemImageSrc: 'https://via.placeholder.com/640x480/007bff/ffffff?text=LATERAL+DO+VEÍCULO',
-  //       thumbnailImageSrc: 'https://via.placeholder.com/100x75/007bff/ffffff?text=LAT',
-  //       alt: 'Imagem 3 - Lateral do Cronos'
-  //     },
-  //     {
-  //       // Outra foto aleatória
-  //       itemImageSrc: 'https://picsum.photos/id/1019/640/480',
-  //       thumbnailImageSrc: 'https://picsum.photos/id/1019/100/75',
-  //       alt: 'Imagem 4 - Pneu e Roda'
-  //     },
-  //     {
-  //       // Imagem 5
-  //       itemImageSrc: 'https://picsum.photos/id/1020/640/480',
-  //       thumbnailImageSrc: 'https://picsum.photos/id/1020/100/75',
-  //       alt: 'Imagem 5 - Detalhe do Motor'
-  //     }
-  //   ];
-  // }
-
 }

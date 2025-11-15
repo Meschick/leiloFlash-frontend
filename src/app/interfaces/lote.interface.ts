@@ -5,6 +5,7 @@ export interface LoteInterface {
   numeroLote: number;
   valorInicial: number;
   valorFinal: number;
+  valorAtual: number;
   tipo: string;
   tipoRetomado: string;
   valorMercado: number;

@@ -115,22 +115,46 @@
 
         <div class="lance-valor">
           <span>Lance atual</span>
-          <strong>R$ {{ lote.valorInicial | number : "1.2-2" }}</strong>
+          <strong>R$ {{ lote.valorAtual | number : "1.2-2" }}</strong>
         </div>
 
         <div class="lance-input">
-          <p-iftalabel style="height: 30px">
-            <p-inputnumber
-              [(ngModel)]="valorLance"
-              inputId="price_input"
-              mode="currency"
-              currency="BRL"
-              locale="pt-BR"
-            />
-          </p-iftalabel>
-          <button class="btn-lance" (click)="enviarLance(lote.id, valorLance)">
-            Dar Lance
-          </button>
+          <div
+            *ngIf="isLogged"
+            style="display: flex; align-items: center; gap: 5%"
+          >
+            <p-iftalabel style="height: 40px">
+              <p-inputnumber
+                [(ngModel)]="valorLance"
+                inputId="price_input"
+                mode="currency"
+                currency="BRL"
+                locale="pt-BR"
+              />
+            </p-iftalabel>
+            <button
+              class="btn-lance"
+              (click)="enviarLance(lote.id, valorLance)"
+            >
+              Dar Lance
+            </button>
+          </div>
+
+          <div *ngIf="!isLogged" class="modern-auth-box">
+            <div class="modern-auth-content">
+              <i class="pi pi-user modern-auth-icon"></i>
+
+              <h3 class="modern-auth-title">Acesso necessário</h3>
+              <p class="modern-auth-text">
+                Entre ou crie uma conta para participar dos lances.
+              </p>
+
+              <button routerLink="/login" class="modern-auth-btn">
+                Entrar e Dar Lance
+                <i class="pi pi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="lances-historico card">

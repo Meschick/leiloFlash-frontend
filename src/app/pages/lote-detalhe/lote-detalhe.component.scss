@@ -10,7 +10,7 @@
 }
 
 .custom-header-details {
-  width: 56%;
+  width: 71%;
   display: flex;
   justify-content: space-between;
   margin: auto;
@@ -25,7 +25,7 @@
   font-size: 0.95rem;
 }
 .detalhe-lote-container {
-  width: 60%;
+  width: 75%;
   margin: auto;
   color: #2c2c2c;
   padding: 20px 40px;
@@ -341,4 +341,77 @@
 
 ::ng-deep .p-inputtext .p-component {
   height: 30px;
+}
+.modern-auth-box {
+  width: 100%;
+  padding: 15px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.modern-auth-content {
+  text-align: center;
+  max-width: 320px;
+}
+
+.modern-auth-icon {
+  font-size: 2.4rem;
+  color: #6c63ff;
+  margin-bottom: 12px;
+}
+
+.modern-auth-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.modern-auth-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+.modern-auth-btn {
+  width: 100%;
+  background: #6c63ff;
+  color: #fff;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 14px rgba(108, 99, 255, 0.35);
+}
+
+.modern-auth-btn i {
+  font-size: 1rem;
+}
+
+.modern-auth-btn:hover {
+  background: #5750e6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(108, 99, 255, 0.45);
+}
+
+.modern-auth-btn:active {
+  transform: scale(0.97);
+}
+
+::ng-deep .p-inputnumber {
+  position: relative !important;
+  top: 4px !important;
+  height: 32px !important;
 }
