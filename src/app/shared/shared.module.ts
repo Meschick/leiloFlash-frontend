@@ -5,12 +5,14 @@ import { PrimengMaterialModule } from "../core/primeng-material/primeng-material
 import { PagesModule } from "../pages/pages.module";
 import { ListLeilaoDestaqueComponent } from './componentes/list-leilao-destaque/list-leilao-destaque.component';
 import { AppRoutingModule } from "../app-routing.module";
+import { LoadingComponent } from './componentes/loading/loading.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     CarroselAnunciosComponent,
     ListLeilaoDestaqueComponent,
+    LoadingComponent,
   ],
   imports: [
     PrimengMaterialModule,
@@ -20,6 +22,7 @@ import { AppRoutingModule } from "../app-routing.module";
     HeaderComponent,
     CarroselAnunciosComponent,
     ListLeilaoDestaqueComponent,
+    LoadingComponent,
   ]
 })
 export class SharedModule {
