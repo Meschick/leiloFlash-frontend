@@ -7,7 +7,7 @@
       (click)="displayBasic = true"
     ></p-button>
 
-    <div class="contador">⏳ Faltam 14h 15s</div>
+    <div class="contador">⏳ {{ tempoRestante }}</div>
   </div>
 
   <p-galleria
@@ -111,16 +111,21 @@
 
       <!-- Painel de Lances -->
       <div class="lote-lance-panel">
-        <div class="status">🔥 Aberto para Lances</div>
+        <div *ngIf="leilaoAtivo" class="status">Aberto para Lances</div>
+        <div *ngIf="!leilaoAtivo" class="status-fechado">
+          Fechado para Lances
+        </div>
 
         <div class="lance-valor">
-          <span>Lance atual</span>
+          <span *ngIf="leilaoAtivo">Lance Atual</span>
+          <span *ngIf="!leilaoAtivo">Lance Final</span>
           <strong>R$ {{ lote.valorAtual | number : "1.2-2" }}</strong>
         </div>
 
         <div class="lance-input">
           <div
-            *ngIf="isLogged"
+            *ngIf="isLogged && leilaoAtivo"
+            class="custom-container-input"
             style="display: flex; align-items: center; gap: 5%"
           >
             <p-iftalabel style="height: 40px">
@@ -138,6 +143,14 @@
             >
               Dar Lance
             </button>
+          </div>
+          <div *ngIf="!leilaoAtivo">
+            <div class="ultimo-lance-info">
+              <div *ngIf="obterUltimoLance() as ultimo">
+                <span>{{ vencedorLote }}</span> arrematou por
+                <strong>{{ valorFinalLote | currency : "BRL" }}</strong>
+              </div>
+            </div>
           </div>
 
           <div *ngIf="!isLogged" class="modern-auth-box">
@@ -157,7 +170,7 @@
           </div>
         </div>
 
-        <div class="lances-historico card">
+        <div *ngIf="isLogged" class="lances-historico card">
           <div class="header">
             <h4 class="title">📜 Últimos Lances</h4>
           </div>
@@ -165,12 +178,18 @@
           <ul class="lances-list">
             <li *ngFor="let lance of lances" class="lance-item">
               <div class="lance-info">
-                <span class="lance-valor">{{
-                  lance.valor | currency : "BRL"
-                }}</span>
-                <span class="lance-usuario">{{ lance.usuario }}</span>
+                <span class="lance-valor">
+                  {{ lance.valor | currency : "BRL" }}
+                </span>
+
+                <span class="lance-usuario">
+                  {{ lance.usuario }}
+                </span>
               </div>
-              <span class="lance-data">{{ lance.data | date : "short" }}</span>
+
+              <span class="lance-data">
+                {{ lance.data | date : "dd/MM/YYYY HH:mm:ss" }}
+              </span>
             </li>
 
             <li *ngIf="lances.length === 0" class="sem-lances">
@@ -180,5 +199,13 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="footer">
+    <p-button
+      class="btn-voltar"
+      label="Voltar"
+      icon="pi pi-arrow-left"
+      routerLink=""
+    />
   </div>
 </div>

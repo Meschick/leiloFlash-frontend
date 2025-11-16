@@ -12,6 +12,8 @@ export interface LoteInterface {
   localizacao: string;
   descricao: string;
   leilaoId: number;
+  dataFim: string;
+  dataInicio: string;
   usuarioId: number;
   veiculo: VeiculoInterface
 }
