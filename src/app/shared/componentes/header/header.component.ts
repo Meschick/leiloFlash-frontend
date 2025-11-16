@@ -56,8 +56,8 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.userLogout();
-    this.isLoggedIn = false; // atualiza o estado local
-    this.router.navigate(['/login']);
+    this.isLoggedIn = false;
+    this.router.navigate(['']);
     if (this.userOverlay) this.userOverlay.hide();
   }
 }
