@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoteDetalheComponent } from './pages/lote-detalhe/lote-detalhe.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { FormCadastroComponent } from './pages/login/components/form-cadastro/form-cadastro.component';
+import { ArrematadosComponent } from './pages/arrematados/arrematados.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'sobre',
     component: SobreComponent
+  },
+  {
+    path: 'arrematados',
+    component: ArrematadosComponent
   },
 
 ];

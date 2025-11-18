@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { AuthService } from '../../../core/services/auth/auth.service';
 
@@ -18,7 +18,11 @@ export class HeaderComponent implements OnInit {
   userInitial = '';
   userItems: MenuItem[] = [];
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService, private router: Router,
+
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit(): void {
     // Verifica se o token existe e não está expirado
@@ -57,7 +61,9 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.userLogout();
     this.isLoggedIn = false;
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: "Você saiu da sua conta com sucesso." });
+
     if (this.userOverlay) this.userOverlay.hide();
   }
 }

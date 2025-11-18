@@ -10,6 +10,7 @@ import { Toast } from 'primeng/toast';
 import { LoteDetalheComponent } from './lote-detalhe/lote-detalhe.component';
 import { SobreComponent } from './sobre/sobre.component';
 import { RouterModule } from '@angular/router';
+import { ArrematadosComponent } from './arrematados/arrematados.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     FormCadastroComponent,
     LoteDetalheComponent,
-    SobreComponent
+    SobreComponent,
+    ArrematadosComponent
   ],
   exports: [
     HomeComponent,

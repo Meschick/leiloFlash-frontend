@@ -1,0 +1,176 @@
+.pagamento-container {
+  padding: 1rem 1.5rem;
+}
+
+.lote-info {
+  background: #f3f6ff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #005fcc;
+}
+
+.lote-info h3 {
+  margin-bottom: 0.5rem;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.titulo-metodo {
+  text-align: center;
+  margin: 0.5rem 0 0.7rem;
+}
+
+.metodos {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.btn-metodo {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #e1e1e1;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.btn-metodo.ativo {
+  background: #005fcc;
+  color: white;
+  font-weight: bold;
+}
+
+.pix-box,
+.card-box {
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn-pagar {
+  width: 100%;
+  padding: 0.8rem;
+  background: #00a000;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 1rem;
+}
+
+.qr-img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 0.8rem auto;
+}
+
+.form-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* 🍀 Estilo permitido pelo SDK — NÃO quebra o formulário */
+.mp-input {
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+}
+/* ================================
+   CARTÃO – FORMULÁRIO MELHORADO
+================================= */
+
+.card-box h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.form-cartao .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-cartao .campo label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* GRID PARA CAMPOS */
+.linha-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* Estilo geral dos inputs */
+#cardholderName,
+#identificationNumber {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  background: white;
+  font-size: 0.95rem;
+}
+
+/* Campos fornecidos pelo SDK (não pode mudar estrutura interna) */
+.mp-input {
+  padding: 0.85rem;
+  background: white;
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 8px;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+
+  transition: border-color 0.2s;
+}
+
+/* Efeito ao focar */
+.mp-input:focus-within {
+  border-color: #005fcc !important;
+}
+
+/* Selects */
+#installments,
+#identificationType {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  font-size: 0.95rem;
+  background: white;
+}
+
+/* O botão de pagar já está bom — só deixei mais consistente */
+.btn-pagar {
+  background: #005fcc;
+}
+
+.btn-pagar:hover {
+  background: #004bb0;
+}
+
+/* 🚨 REGRA CRÍTICA: Garante que o Iframe do Mercado Pago ocupe 100% do container e seja interativo */
+.mp-input iframe {
+  /* Força o iframe a preencher o espaço do div container */
+  width: 100% !important;
+  height: 100% !important;
+
+  /* Garante que o iframe seja um elemento de bloco para layout correto */
+  display: block !important;
+}

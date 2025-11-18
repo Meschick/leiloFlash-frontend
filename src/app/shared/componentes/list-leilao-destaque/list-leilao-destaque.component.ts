@@ -24,6 +24,7 @@ export class ListLeilaoDestaqueComponent implements OnInit, OnChanges {
   intervalId: any;
   leilaoAtivo: boolean = true;
 
+  displayBasic: boolean = false;
 
   @Input() nome!: string;
   @Input() dataInicio!: string;

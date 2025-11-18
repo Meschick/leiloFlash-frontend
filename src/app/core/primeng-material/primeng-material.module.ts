@@ -23,6 +23,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { Dialog } from 'primeng/dialog';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { CommonModule } from '@angular/common';
     PanelMenuModule,
     BrowserAnimationsModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    Dialog
 
   ],
   exports: [
@@ -81,8 +84,8 @@ import { CommonModule } from '@angular/common';
     PanelMenuModule,
     BrowserAnimationsModule,
     CommonModule,
-    FormsModule
-
+    FormsModule,
+    Dialog
 
 
   ]

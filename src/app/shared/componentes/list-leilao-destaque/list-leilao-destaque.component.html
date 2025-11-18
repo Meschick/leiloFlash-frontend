@@ -16,11 +16,6 @@
     </div>
 
     <div class="titulo-leilao">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/2910/2910768.png"
-        alt="Logo"
-        class="logo-leilao"
-      />
       <h2>{{ nome }}</h2>
     </div>
 
@@ -52,7 +47,7 @@
             <button
               pButton
               icon="pi pi-images"
-              label="{{ lote.veiculo.imagens }} Fotos"
+              label="{{ lote.veiculo.imagens.length }} Fotos"
               class="btn-mini p-button-sm p-button-rounded"
             ></button>
           </div>

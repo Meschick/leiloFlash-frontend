@@ -1,0 +1,93 @@
+<app-header></app-header>
+<div class="arrematados-container">
+  <h2 class="titulo">Meus Lotes Arrematados</h2>
+
+  <div *ngIf="lotesArrematados.length === 0" class="empty-state">
+    <div class="icon-wrapper">
+      <i class="pi pi-car"></i>
+    </div>
+    <h3>Você ainda não arrematou nenhum veículo.</h3>
+    <p>
+      Continue explorando nossos leilões para encontrar seu próximo veículo.
+    </p>
+    <p-button
+      label="Ver Leilões Ativos"
+      icon="pi pi-search"
+      routerLink=""
+      class="btn-ver-leiloes"
+    />
+  </div>
+
+  <div *ngIf="lotesArrematados.length > 0">
+    <div *ngFor="let item of lotesArrematados" class="card-compra">
+      <div class="compra-header">
+        <div>
+          <h4 class="leilao-nome">LEILÃO FINALIZADO</h4>
+          <p class="venda-numero">Lote #{{ item.numeroLote }}</p>
+        </div>
+
+        <div class="compra-info">
+          <div class="info-bloco">
+            <span class="label">Situação</span>
+            <span class="valor situacao">FECHADA</span>
+          </div>
+
+          <div class="info-bloco">
+            <span class="label">Valor Final</span>
+            <span class="valor valor-final">{{
+              item.valorFinal | currency : "BRL"
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="linha"></div>
+
+      <div class="conteudo">
+        <div class="img-wrapper">
+          <span class="tag-lote">Lote {{ item.numeroLote }}</span>
+          <img [src]="item.imagemUrl" alt="Imagem do veículo" />
+        </div>
+
+        <div class="info-veiculo">
+          <h3 class="titulo-veiculo">{{ item.nomeVeiculo }}</h3>
+
+          <div class="info-lista">
+            <p><strong>Ano:</strong> {{ item.ano }}</p>
+            <p><strong>Categoria:</strong> {{ item.tipo }}</p>
+          </div>
+
+          <div class="acesso">
+            <a [routerLink]="['/lote', item.loteId]" class="ver-lote"
+              >Ver Lote</a
+            >
+          </div>
+        </div>
+
+        <div class="acoes">
+          <button class="btn-detalhes" disabled="true">Detalhes</button>
+          <button class="btn-pagamento" (click)="visualizarModal(item)">
+            Efetuar Pagamento
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer" *ngIf="lotesArrematados.length != 0">
+    <p-button
+      class="btn-voltar"
+      label="Voltar"
+      icon="pi pi-arrow-left"
+      routerLink=""
+    />
+  </div>
+</div>
+
+<app-modal-pagamento
+  [mostrarModal]="mostrarModal"
+  (fecharModal)="mostrarModal = false"
+  [lote]="loteSelecionado"
+  [loteId]="loteSelecionado?.loteId"
+  [valor]="loteSelecionado?.valorFinal"
+></app-modal-pagamento>

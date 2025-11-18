@@ -1,0 +1,79 @@
+<p-dialog
+  header="Efetuar Pagamento"
+  [modal]="true"
+  [(visible)]="mostrarModal"
+  (onShow)="onAbrir()"
+  (onHide)="onFechar()"
+  [style]="{ width: '50rem' }"
+>
+  <div class="pagamento-container">
+    <!-- DETALHES DO LOTE -->
+    <div class="lote-info" *ngIf="lote">
+      <h3>Detalhes do Lote</h3>
+
+      <div class="linha">
+        <span>Número do Lote:</span>
+        <strong>{{ lote.numeroLote }}</strong>
+      </div>
+
+      <div class="linha">
+        <span>Valor do lote arrematado:</span>
+        <strong>R$ {{ lote.valorFinal | number : "1.2-2" }}</strong>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- SELEÇÃO DE MÉTODO -->
+    <h2 class="titulo-metodo">Selecione o método de pagamento</h2>
+
+    <div class="metodos">
+      <button
+        class="btn-metodo"
+        [class.ativo]="metodoSelecionado === 'pix'"
+        (click)="metodoSelecionado = 'pix'"
+      >
+        PIX
+      </button>
+
+      <button
+        class="btn-metodo"
+        [class.ativo]="metodoSelecionado === 'card'"
+        (click)="selecionarCartao()"
+      >
+        Cartão
+      </button>
+    </div>
+
+    <!-- PIX -->
+    <div *ngIf="metodoSelecionado === 'pix'" class="pix-box">
+      <h3>Pagamento via PIX</h3>
+
+      <button class="btn-pagar" (click)="pagarPix()">Gerar QR Code</button>
+
+      <div *ngIf="pagamentoGerado" class="resultado-pagamento">
+        <h4>Status: {{ pagamentoGerado.status }}</h4>
+
+        <img
+          *ngIf="pagamentoGerado.qrCodeBase64"
+          class="qr-img"
+          [src]="'data:image/png;base64,' + pagamentoGerado.qrCodeBase64"
+        />
+
+        <p class="qr-text">{{ pagamentoGerado.qrCode }}</p>
+      </div>
+    </div>
+
+    <!-- PAGAMENTO COM CARTÃO: Payment Brick -->
+    <div *ngIf="metodoSelecionado === 'card'" class="card-box">
+      <h3 class="titulo-pagamento">Pagamento com Cartão</h3>
+
+      <!-- Container onde o Mercado Pago monta o Payment Brick -->
+      <div id="paymentBrick_container"></div>
+
+      <!-- <button class="btn-pagar" (click)="iniciarPaymentBrick()">
+        Confirmar Pagamento
+      </button> -->
+    </div>
+  </div>
+</p-dialog>
