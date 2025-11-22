@@ -16,11 +16,15 @@ export class PagamentoService extends BaseService<PagamentoResquest> {
     super(httpClient, `${environment.api_url}/api/v1/Pagamento`);
   }
 
-  public pagarComCartao(paymentRequest: PagamentoResquest): Observable<ApiResponseInterface<PagamentoResponse>> {
-    return this.httpClient.post<ApiResponseInterface<PagamentoResponse>>(`${environment.api_url}/api/v1/Pagamento/cartao`, paymentRequest);
+  public pagarComCartao(paymentRequest: any): Observable<ApiResponseInterface<any>> {
+    return this.httpClient.post<ApiResponseInterface<any>>(`${environment.api_url}/api/v1/Pagamento/cartao`, paymentRequest);
   }
 
   public pagarComPix(paymentRequest: any): Observable<ApiResponseInterface<any>> {
     return this.httpClient.post<ApiResponseInterface<any>>(`${environment.api_url}/api/v1/Pagamento/pix`, paymentRequest);
+  }
+
+  criarPreferencia(dto: any): Observable<ApiResponseInterface<any>> {
+    return this.http.post<ApiResponseInterface<any>>(`${this.apiUrl}/api/v1/Pagamento/preferencia`, dto);
   }
 }

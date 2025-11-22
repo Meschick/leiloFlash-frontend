@@ -1,8 +1,22 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PagamentoService } from '../../../core/services/pagamento/pagamento.service';
 import { environmentMercadoPago } from '../../../../environments/environments.mercadoPago';
+import { MessageService } from 'primeng/api';
 declare var MercadoPago: any;
 
+interface MPFormData {
+  token: string;
+  payment_method_id: string;
+  issuer_id?: string;
+  installments?: number;
+  payer: {
+    email: string;
+    identification: {
+      type: string;
+      number: string;
+    };
+  };
+}
 @Component({
   selector: 'app-modal-pagamento',
   templateUrl: './modal-pagamento.component.html',
@@ -15,6 +29,10 @@ export class ModalPagamentoComponent {
   @Input() valor!: number;
   @Input() lote!: any;
 
+  idPagamento!: string;
+  status!: string;
+  isProcessing = false;
+  isSuccess = false;
   metodoSelecionado: 'pix' | 'card' | null = null;
 
   mp: any;
@@ -22,61 +40,109 @@ export class ModalPagamentoComponent {
 
   pagamentoGerado: any = null;
 
-  constructor(private pagamentoService: PagamentoService) { }
+  constructor(
+    private pagamentoService: PagamentoService,
+
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit() {
     this.mp = new MercadoPago(environmentMercadoPago.mercadoPagoPublicKey, {
       locale: 'pt-BR'
     });
   }
+
   async iniciarPaymentBrick() {
-    console.log("Valor recebido:", this.valor);
+    const valorTeste = 848;
+
 
     const bricksBuilder = this.mp.bricks();
 
     this.paymentBrickController = await bricksBuilder.create(
-      'payment',
-      'paymentBrick_container',
+      "payment",
+      "paymentBrick_container",
       {
         initialization: {
-          amount: this.valor,
-        },
-
-        mode: 'sandbox',        // 🔥 Garante ambiente correto
-        locale: 'pt-BR',
-
-        customization: {
-          paymentMethods: {
-            creditCard: "enabled",   // 🔥 NÃO coloca "all"
-            pix: "disabled"          // opcional
+          amount: valorTeste,
+          payer: {
+            email: "email@teste.com"
           }
         },
 
+        customization: {
+          render: {
+            card: {
+              label: "Pagamento com cartão"
+            }
+          },
+
+          paymentMethods: {
+            creditCard: "all",
+            debitCard: "all"
+          },
+
+          visual: {
+            style: { theme: "default" }
+          }
+        },
+
+        locale: "pt-BR",
+
         callbacks: {
-          onReady: () => {
-            console.log("Payment Brick pronto!");
-          },
+          onReady: () => console.log("Payment Brick carregado!"),
 
-          onError: (error: any) => {
-            console.error('Erro Payment Brick:', error);
-          },
+          onError: (error: any) =>
+            console.error("ERRO PAYMENT BRICK:", error),
 
-          onSubmit: (formData: any) => {
-            return this.pagamentoService.pagarComCartao({
+          onSubmit: async ({ formData }: { formData: MPFormData }) => {
+            console.log("FormData recebido do Brick:", formData);
+
+            if (!formData?.token) {
+              console.error("Token não gerado pelo Mercado Pago!", formData);
+              return Promise.reject();
+            }
+
+            const payload = {
               loteId: this.loteId,
-              valor: this.valor,
-              metodo: 'card',
-              ...formData
-            }).toPromise();
-          },
+              valor: valorTeste,
+              metodo: "card",
+
+              Token: formData.token,
+              PaymentMethodId: formData.payment_method_id,
+              IssuerId: formData.issuer_id,
+              Installments: formData.installments,
+              TransactionAmount: valorTeste,
+
+              IdentificationType: formData.payer.identification.type,
+              IdentificationNumber: formData.payer.identification.number,
+              Email: formData.payer.email
+            };
+
+            return new Promise((resolve, reject) => {
+              this.pagamentoService.pagarComCartao(payload).subscribe({
+                next: (res) => {
+                  this.messageService.add({ severity: 'Aprovado', summary: 'Success', detail: res.data.mensagem });
+                  this.idPagamento = res.data.paymentId
+                  this.status = res.data.status
+                  console.log("Pagamento OK:", res);
+                  resolve(res);
+                },
+                error: (err) => {
+                  console.error("Erro no backend:", err);
+                  reject(err);
+                }
+              });
+            });
+          }
         }
       }
     );
   }
+
   selecionarCartao() {
     this.metodoSelecionado = 'card';
 
-    setTimeout(() => this.iniciarPaymentBrick(), 50);
+    setTimeout(() => this.iniciarPaymentBrick(), 80);
   }
 
   pagarPix() {
