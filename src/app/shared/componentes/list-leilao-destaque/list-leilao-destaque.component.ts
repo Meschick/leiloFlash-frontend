@@ -66,7 +66,6 @@ export class ListLeilaoDestaqueComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['lotes'].currentValue) {
-      console.log("Lotes atualizados:", this.lotes);
     }
   }
 

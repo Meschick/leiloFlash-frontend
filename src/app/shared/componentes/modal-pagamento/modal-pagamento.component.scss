@@ -174,3 +174,102 @@
   /* Garante que o iframe seja um elemento de bloco para layout correto */
   display: block !important;
 }
+.success-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.success-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px 40px;
+  text-align: center;
+  width: 350px;
+  animation: fadeIn 0.5s ease-out;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  color: #0f9d58; // verde fintech
+  margin-top: 15px;
+}
+
+.status {
+  font-size: 18px;
+  color: #0f9d58;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.transaction {
+  margin-top: 15px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.transaction-id {
+  margin-top: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.success-btn {
+  margin-top: 25px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #0f9d58;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.success-btn:hover {
+  background: #0c7c46;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.success-circle {
+  stroke: #0f9d58;
+  stroke-width: 3;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: stroke 0.6s forwards ease-out;
+}
+
+.success-check {
+  stroke: #0f9d58;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.4s 0.6s forwards ease-out;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

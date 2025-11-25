@@ -11,6 +11,7 @@ import { LoteDetalheComponent } from './lote-detalhe/lote-detalhe.component';
 import { SobreComponent } from './sobre/sobre.component';
 import { RouterModule } from '@angular/router';
 import { ArrematadosComponent } from './arrematados/arrematados.component';
+import { PipeModule } from '../core/pipes/pipe-module.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ArrematadosComponent } from './arrematados/arrematados.component';
     ReactiveFormsModule,
     FormsModule,
     Toast,
-    RouterModule
+    RouterModule,
+    PipeModule
 
 
   ],

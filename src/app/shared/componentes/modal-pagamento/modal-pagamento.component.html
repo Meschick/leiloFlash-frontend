@@ -8,69 +8,85 @@
   [style]="{ width: '50rem' }"
 >
   <div class="pagamento-container">
-    <!-- DETALHES DO LOTE -->
-    <div class="lote-info" *ngIf="lote">
-      <h3>Detalhes do Lote</h3>
+    <div *ngIf="isSuccess" class="success-wrapper">
+      <div class="success-card">
+        <div class="success-icon">
+          <svg viewBox="0 0 52 52">
+            <circle class="success-circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="success-check" fill="none" d="M14 27 l7 7 l17 -17" />
+          </svg>
+        </div>
 
-      <div class="linha">
-        <span>Número do Lote:</span>
-        <strong>{{ lote.numeroLote }}</strong>
-      </div>
+        <h2>Pagamento aprovado!</h2>
 
-      <div class="linha">
-        <span>Valor do lote arrematado:</span>
-        <strong>R$ {{ lote.valorFinal | number : "1.2-2" }}</strong>
-      </div>
-    </div>
+        <p class="status">✔ {{ status }}</p>
 
-    <hr />
-
-    <!-- SELEÇÃO DE MÉTODO -->
-    <h2 class="titulo-metodo">Selecione o método de pagamento</h2>
-
-    <div class="metodos">
-      <button
-        class="btn-metodo"
-        [class.ativo]="metodoSelecionado === 'pix'"
-        (click)="metodoSelecionado = 'pix'"
-      >
-        PIX
-      </button>
-
-      <button
-        class="btn-metodo"
-        [class.ativo]="metodoSelecionado === 'card'"
-        (click)="selecionarCartao()"
-      >
-        Cartão
-      </button>
-    </div>
-
-    <!-- PIX -->
-    <div *ngIf="metodoSelecionado === 'pix'" class="pix-box">
-      <h3>Pagamento via PIX</h3>
-
-      <button class="btn-pagar" (click)="pagarPix()">Gerar QR Code</button>
-
-      <div *ngIf="pagamentoGerado" class="resultado-pagamento">
-        <h4>Status: {{ pagamentoGerado.status }}</h4>
-
-        <img
-          *ngIf="pagamentoGerado.qrCodeBase64"
-          class="qr-img"
-          [src]="'data:image/png;base64,' + pagamentoGerado.qrCodeBase64"
-        />
-
-        <p class="qr-text">{{ pagamentoGerado.qrCode }}</p>
+        <p class="transaction">ID da transação:</p>
+        <p class="transaction-id">{{ idPagamento }}</p>
       </div>
     </div>
 
-    <!-- PAGAMENTO COM CARTÃO: Payment Brick -->
-    <div *ngIf="metodoSelecionado === 'card'" class="card-box">
-      <h3 class="titulo-pagamento">Pagamento com Cartão</h3>
+    <div *ngIf="!isSuccess">
+      <div class="lote-info" *ngIf="lote">
+        <h3>Detalhes do Lote</h3>
 
-      <!-- Container onde o Mercado Pago monta o Payment Brick -->
-      <div id="paymentBrick_container"></div>
+        <div class="linha">
+          <span>Número do Lote:</span>
+          <strong>{{ lote.numeroLote }}</strong>
+        </div>
+
+        <div class="linha">
+          <span>Valor do lote arrematado:</span>
+          <strong>R$ {{ lote.valorFinal | number : "1.2-2" }}</strong>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2 class="titulo-metodo">Selecione o método de pagamento</h2>
+
+      <div class="metodos">
+        <button
+          class="btn-metodo"
+          [class.ativo]="metodoSelecionado === 'pix'"
+          (click)="metodoSelecionado = 'pix'"
+        >
+          PIX
+        </button>
+
+        <button
+          class="btn-metodo"
+          [class.ativo]="metodoSelecionado === 'card'"
+          (click)="selecionarCartao()"
+        >
+          Cartão
+        </button>
+      </div>
+
+      <div *ngIf="metodoSelecionado === 'pix'" class="pix-box">
+        <h3>Pagamento via PIX</h3>
+
+        <button class="btn-pagar" (click)="pagarPix()">Gerar QR Code</button>
+
+        <div *ngIf="pagamentoGerado" class="resultado-pagamento">
+          <h4>Status: {{ pagamentoGerado.status }}</h4>
+
+          <img
+            *ngIf="pagamentoGerado.qrCodeBase64"
+            class="qr-img"
+            [src]="'data:image/png;base64,' + pagamentoGerado.qrCodeBase64"
+          />
+
+          <p class="qr-text">{{ pagamentoGerado.qrCode }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="metodoSelecionado === 'card'" class="card-box">
+        <h3 class="titulo-pagamento">Pagamento com Cartão</h3>
+        <div id="paymentBrick_container"></div>
+      </div>
+
+      <div *ngIf="isProcessing" class="loading">Processando pagamento...</div>
     </div>
   </div>
 </p-dialog>

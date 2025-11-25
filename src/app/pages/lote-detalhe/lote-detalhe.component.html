@@ -37,7 +37,6 @@
   </p-galleria>
 
   <div class="detalhe-lote-container">
-    <!-- Breadcrumb -->
     <nav class="breadcrumb">
       <span>Carros</span> ›
       <span>{{ lote.veiculo.marca + "/" + lote.veiculo.modelo }}</span> ›
@@ -45,7 +44,6 @@
     </nav>
 
     <div class="lote-main">
-      <!-- Informações do veículo -->
       <div class="lote-info-section">
         <h1 class="lote-title">
           {{ lote.veiculo.marca + "/" + lote.veiculo.modelo }}
@@ -83,11 +81,15 @@
           </div>
           <div class="detail-item">
             <span class="label">Valor Mercado</span>
-            <span class="value">R$ {{ lote.valorMercado }}</span>
+            <span class="value">
+              {{ lote.valorMercado | currency : "BRL" }}</span
+            >
           </div>
           <div class="detail-item">
             <span class="label">Possui Chave</span>
-            <span class="value">{{ lote.veiculo.possuiChave }}</span>
+            <span class="value">{{
+              lote.veiculo.possuiChave | formatChaveVeiculo
+            }}</span>
           </div>
           <div class="detail-item full-width">
             <span class="label">Localização</span>

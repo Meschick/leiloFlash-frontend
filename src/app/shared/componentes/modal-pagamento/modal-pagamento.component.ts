@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PagamentoService } from '../../../core/services/pagamento/pagamento.service';
 import { environmentMercadoPago } from '../../../../environments/environments.mercadoPago';
 import { MessageService } from 'primeng/api';
+import { ChangeDetectorRef } from '@angular/core';
 declare var MercadoPago: any;
 
 interface MPFormData {
@@ -42,7 +43,7 @@ export class ModalPagamentoComponent {
 
   constructor(
     private pagamentoService: PagamentoService,
-
+    private cdr: ChangeDetectorRef,
     private messageService: MessageService,
   ) { }
 
@@ -93,14 +94,10 @@ export class ModalPagamentoComponent {
 
           onError: (error: any) =>
             console.error("ERRO PAYMENT BRICK:", error),
-
           onSubmit: async ({ formData }: { formData: MPFormData }) => {
-            console.log("FormData recebido do Brick:", formData);
 
-            if (!formData?.token) {
-              console.error("Token não gerado pelo Mercado Pago!", formData);
-              return Promise.reject();
-            }
+            this.isProcessing = true;
+            this.isSuccess = false;
 
             const payload = {
               loteId: this.loteId,
@@ -121,13 +118,24 @@ export class ModalPagamentoComponent {
             return new Promise((resolve, reject) => {
               this.pagamentoService.pagarComCartao(payload).subscribe({
                 next: (res) => {
-                  this.messageService.add({ severity: 'Aprovado', summary: 'Success', detail: res.data.mensagem });
-                  this.idPagamento = res.data.paymentId
-                  this.status = res.data.status
-                  console.log("Pagamento OK:", res);
+
+                  this.isProcessing = false;
+                  this.isSuccess = true;
+
+                  if (this.paymentBrickController) {
+                    this.paymentBrickController.unmount();
+                  }
+
+                  this.idPagamento = res.data.paymentId;
+                  this.status = res.data.status;
+
+                  this.cdr.detectChanges();
                   resolve(res);
                 },
                 error: (err) => {
+                  this.isProcessing = false;
+                  this.isSuccess = false;
+
                   console.error("Erro no backend:", err);
                   reject(err);
                 }

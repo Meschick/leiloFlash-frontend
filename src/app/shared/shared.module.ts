@@ -7,6 +7,7 @@ import { ListLeilaoDestaqueComponent } from './componentes/list-leilao-destaque/
 import { AppRoutingModule } from "../app-routing.module";
 import { LoadingComponent } from './componentes/loading/loading.component';
 import { ModalPagamentoComponent } from './componentes/modal-pagamento/modal-pagamento.component';
+import { PipeModule } from "../core/pipes/pipe-module.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ModalPagamentoComponent } from './componentes/modal-pagamento/modal-pag
   ],
   imports: [
     PrimengMaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   exports: [
     HeaderComponent,

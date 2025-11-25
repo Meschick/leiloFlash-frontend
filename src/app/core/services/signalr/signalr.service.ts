@@ -30,10 +30,8 @@ export class SignalrService {
   }
 
   enviarLance(request: any, usuario: string): void {
-    console.log('Tentando enviar lance... Estado da conexão:', this.hubConnection.state);
 
     if (this.hubConnection.state === signalR.HubConnectionState.Connected) {
-      console.log('Enviando via SignalR', request, usuario);
       this.hubConnection.invoke('EnviarLance', request, usuario)
         .then(() => console.log('Lance enviado com sucesso via SignalR'))
         .catch(err => console.error('Erro ao enviar lance:', err));

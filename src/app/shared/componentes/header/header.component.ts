@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Verifica se o token existe e não está expirado
     this.isLoggedIn = this.authService.isLoggeIn() && !this.authService.isTokenExpired();
 
     if (this.isLoggedIn) {
@@ -63,7 +62,6 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = false;
     this.router.navigate(['/login']);
     this.messageService.add({ severity: 'success', summary: 'Success', detail: "Você saiu da sua conta com sucesso." });
-
     if (this.userOverlay) this.userOverlay.hide();
   }
 }

@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { Noir } from '../styles';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Toast } from 'primeng/toast';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { LoadingService } from './core/services/loading/loading.service';
+import { PipeModule } from './core/pipes/pipe-module.module';
 
 
 @NgModule({
@@ -25,17 +27,17 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     PagesModule,
     AppRoutingModule,
     SharedModule,
+    PipeModule,
     CommonModule,
     ReactiveFormsModule,
-    Toast
+    Toast,
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptor,
-      multi: true,
-    },
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([
+        LoadingInterceptor
+      ])
+    ),
     providePrimeNG({
       ripple: true,
       theme: {

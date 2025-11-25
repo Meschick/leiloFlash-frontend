@@ -3,7 +3,6 @@
     <img src="assets/logo2.png" alt="logo" style="height: 122px" />
   </div>
 
-  <!-- MENU PRINCIPAL -->
   <div class="menu">
     <input type="radio" id="opt1" name="switch" checked routerLink="" />
     <label for="opt1" class="menu-item">
@@ -32,9 +31,7 @@
     <span class="slider"></span>
   </div>
 
-  <!-- BOTÃO LOGIN / MENU USUÁRIO -->
   <div class="utils">
-    <!-- 🔹 Mostra botão se não estiver logado -->
     <ng-container *ngIf="!isLoggedIn; else userMenu">
       <button
         pButton
@@ -44,8 +41,6 @@
         routerLink="/login"
       ></button>
     </ng-container>
-
-    <!-- 🔹 Mostra menu se estiver logado -->
     <ng-template #userMenu>
       <div class="user-avatar" (click)="userOverlay.toggle($event)">
         {{ userInitial }}
